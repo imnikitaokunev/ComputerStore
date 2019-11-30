@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Система учета продаж</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+        <link rel="shortcut icon" th:href="@{/img/favicon.png}" type="image/png" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="navbar">
+                    <img src="/img/supkt2.png" style="margin-left: 300px;" />
+                    <ul>
+                        <li>
+                            <a title="Войти" href="/login">
+                                Войти
+                            </a>
+                        </li>
+                        <li>
+                            <a title="Пункт" href="/login">
+                                Пункт
+                            </a>
+                        </li>
+                        <li>
+                            <a title="Пункт" href="/login">
+                                Пункт
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="box c-box-incorrect">
+            <div class="c-label incorrect" th:if="${param.error}">
+                Неправильный логин или пароль.
+            </div>
+            <div class="c-label incorrect" th:if="${param.logout}">
+                Вы вышли из системы.
+            </div>
+        </div>
+        <form class="box" th:action="@{/login}" method="post">
+            <div class="c-label box c-box-input">
+                <label> Логин: <input type="text" name="username" /> </label>
+
+                <label>
+                    Пароль: <input type="password" name="password" />
+                </label>
+                <input type="submit" value="Войти" />
+            </div>
+        </form>
+    </body>
+</html>

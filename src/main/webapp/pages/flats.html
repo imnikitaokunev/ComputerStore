@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All flats</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/flats.js"></script>
+</head>
+<body>
+<table id="flatList">
+    <p>Flats</p>
+    <tr>
+        <th>street</th>
+        <th>price</th>
+        <th>owner phone</th>
+        <th>action</th>
+    </tr>
+</table>
+<button onclick="relocateToAddFlatPage()">add flat</button>
+<table id="houseList">
+    <p>Houses</p>
+    <tr>
+        <th>street</th>
+        <th>price</th>
+        <th>owner phone</th>
+        <th>action</th>
+    </tr>
+</table>
+<button onclick="relocateToAddHousePage()">add house</button>
+<script>getFlats();</script>
+<script>getHouses();</script>
+</body>
+</html>

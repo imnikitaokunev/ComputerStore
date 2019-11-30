@@ -1,0 +1,115 @@
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    transition: 0s ease-in-out; /* добавим плавность переходов для всех элементов страницы*/
+}
+
+input {
+    align-self: center;
+    font-family: "Source Sans Pro";
+    font-size: 1.1rem;
+    font-weight: 400;
+    align-self: center;
+}
+
+.c-text-h1{
+    margin-top: 5%;
+    color: #2c302f;
+    font-family: "Montserrat";
+    font-size: 2.25rem;
+    font-weight: 800;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.c-text-body{
+    margin-top: 0.9%;
+    color: #606665;
+    font-family: "Source Sans Pro Regular";
+    font-size: 1.125rem;
+    font-weight: 200;
+}
+
+
+.c-label {
+    color: #606665;
+    font-family: "Montserrat";
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.box {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.c-box-input {
+    margin-top: 5%;
+    width: 175px;
+    height: 100px;
+}
+
+.c-box-incorrect {
+    margin-top: 2.5%;
+}
+
+.incorrect {
+    align-self: center;
+    justify-content: center;
+    color: red;
+}
+
+.navbar {
+    margin-top: 1.5rem;
+    display: flex;
+}
+
+.container {
+    margin-left: 2.6%;
+    margin-right: 18.3%;
+}
+
+a:hover {
+    color: #1c9f8a;
+    border-bottom-color: #1c9f8a;
+}
+
+li {
+    font-family: "Source Sans Pro SemiBold";
+    font-size: 1.1rem;
+    /*font-weight: 600;*/
+    text-align: right;
+    flex-direction: column;
+    list-style: none;
+    display: list-item;
+}
+
+ul {
+    box-sizing: border-box;
+    flex-direction: row;
+    display: flex;
+    margin-top: 0;
+    margin-left: auto;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.c-link-menu {
+    font-weight: 600;
+    text-align: center;
+}
+
+a {
+    box-sizing: border-box;
+    text-decoration: none;
+    margin-left: 2.5rem;
+    line-height: 1.5;
+    color: #606665;
+}

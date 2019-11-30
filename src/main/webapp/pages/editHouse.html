@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../scripts/editHouse.js"></script>
+</head>
+<body>
+<input type="hidden" id="id">
+<select name="ownerNames" id="ownerNames"></select>
+<select name="streetNames" id="streetNames"></select>
+<label for="price">price</label>
+<input type="text" name="price" id="price">
+<label for="floors">floors</label>
+<input type="text" name="floors" id="floors">
+<label for="hasSwimmingPool">has swimming pool</label>
+<input type="checkbox" name="hasSwimmingPool" id="hasSwimmingPool">
+<label for="hasGarage">has garage</label>
+<input type="checkbox" name="hasGarage" id="hasGarage">
+<button onclick="submitEdit()">edit</button>
+<script>editHouse();</script>
+<script>findStreetNames();</script>
+<script>findOwnerNames();</script>
+</body>
+</html>

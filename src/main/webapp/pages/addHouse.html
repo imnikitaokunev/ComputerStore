@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/addHouse.js"></script>
+</head>
+<body>
+<select name="ownerNames" id="ownerNames"></select>
+<select name="streetNames" id="streetNames"></select>
+<label for="price">price</label>
+<input type="text" name="price" id="price">
+<label for="floors">floors</label>
+<input type="text" name="floors" id="floors">
+<label for="hasSwimmingPool">has swimming pool</label>
+<input type="checkbox" name="hasSwimmingPool" id="hasSwimmingPool">
+<label for="hasGarage">has garage</label>
+<input type="checkbox" name="hasGarage" id="hasGarage">
+<button onclick="submitAdd()">add</button>
+<script>findStreetNames();</script>
+<script>findOwnerNames();</script>
+</body>
+</html>

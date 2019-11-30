@@ -1,0 +1,44 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/nikita
+
+    username: postgres
+    password: 13Nikitos
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        #hbm2ddl:
+          #auto: create
+        temp:
+          use_jdbc_metadata_defaults: false
+  port: 8080
+  spring:
+    resources:
+      add-mappings=true:
+#  flyway:
+#    locations: classpath:db.migration
+#    table: flyway_history
+#    baseline-on-migrate: true
+#    baseline-version: 1
+#    enabled: true
+#keycloak:
+#  principal-attribute: preferred_username
+#  realm: SpringBootKeycloak
+#  resource: login-app
+#  auth-server-url: http://localhost:8180/auth
+#  public-client: true
+
+
+logging:
+  file: "logs/app.log"
+
+#server:
+#  port: 8443
+#  ssl:
+#    key-store-type: PKCS12
+#    key-store: classpath:keystore/baeldung.p12
+#    key-store-password: 11111111
+#    key-alias: baeldung

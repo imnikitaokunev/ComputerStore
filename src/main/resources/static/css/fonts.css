@@ -1,0 +1,14 @@
+@font-face{
+    font-family: 'Source Sans Pro SemiBold';
+    src: url(/fonts/SourceSansPro-SemiBold.ttf);  
+}
+
+@font-face{
+    font-family: 'Montserrat';
+    src: url(/fonts/Montserrat-Bold.ttf);  
+}
+
+@font-face{
+    font-family: 'Source Sans Pro Regular';
+    src: url(/fonts/SourceSansPro-Regular.ttf);  
+}
