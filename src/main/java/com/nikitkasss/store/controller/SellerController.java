@@ -20,6 +20,11 @@ public class SellerController {
         this.sellerService = sellerService;
     }
 
+    @GetMapping("/addProduct")
+    public String addProductPage(){
+        return "addProduct";
+    }
+
     @GetMapping("/sellers")
     public List<SellerInfoDto> getAllSellers(){
         return sellerService.allSellers();

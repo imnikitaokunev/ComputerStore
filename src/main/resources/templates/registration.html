@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Регистрация</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="shortcut icon" href="/img/icon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css" />
+
+    <script type="text/javascript" src="/scripts/registration.js"></script>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar">
+            <a href="/all/">
+                <img src="/img/supkt2.png" class="logo" />
+            </a>
+            <ul>
+                <li>
+                    <a title="Войти" href="/all/login">
+                        Войти
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<!--<div class="box c-box-incorrect">-->
+<!--    <div class="c-label incorrect" th:if="${param.error}">-->
+<!--        Неправильный логин или пароль.-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="text-center" style="margin-bottom: 3%;">
+    <h1 class="c-text-h1">Регистрация</h1>
+</div>
+
+<div class="box">
+    <div class="c-label box c-box-input">
+        <label> Имя: <input type="text" id="firstName" name="firstName" /> </label>
+        <label> Фамилия: <input type="text" id="lastName" name="lastName" /> </label>
+        <label> Отчество: <input type="text" id="patronymicName" name="patronymicName"/> </label>
+        <label> Логин: <input type="text" name="username" id="username" /> </label>
+        <label> Пароль: <input type="text" name="password" id="password" /> </label>
+        <label> Телефон: <input type="text" name="phone" id="phone"/> </label>
+        <label> Email: <input type="text" name="email" id="email"/> </label>
+        <input type = "button" class="login-button" onclick="submitRegister()" value=" Регистрация " />
+    </div>
+</div>
+</body>
+</html>

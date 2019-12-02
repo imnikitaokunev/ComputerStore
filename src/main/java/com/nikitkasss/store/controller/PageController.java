@@ -9,23 +9,55 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PageController {
 
     @GetMapping("/")
-    public String allProducts() {
+    public String homePage() {
+        return "home";
+    }
+
+    @GetMapping("/registration")
+    public String addUserPage(){
+        return "registration";
+    }
+
+    @GetMapping("/products")
+    public String productsPage(){
         return "products";
     }
 
-    @GetMapping("/editProduct/{id}")
-    public String editProductPage() {
-        return "editProduct";
-    }
-
-    @GetMapping("/addProduct")
-    public String addProductPage() {
-        return "addProduct";
+    @GetMapping("/login")
+    public String loginPage(){
+        return "login";
     }
 
 
-    @GetMapping("/productInfo/{id}")
-    public String productInfoPage() {
-        return "productInfo";
-    }
+//    @GetMapping("")
+
+//    @GetMapping("/editProduct/{id}")
+//    public String editProductPage() {
+//        return "editProduct";
+//    }
+//
+//    @GetMapping("/addProduct")
+//    public String addProductPage() {
+//        return "addProduct";
+//    }
+//
+//    @GetMapping("/productInfo/{id}")
+//    public String productInfoPage() {
+//        return "productInfo";
+//    }
+
+//    @GetMapping("/registration")
+//    public String registration(){
+//        return "registration";
+//    }
+//
+//    @PostMapping("/registration")
+//    public String addUser(AllUserInfoDto user, Map<String, Object> model){
+//        AbstractUser u = repository.getByUserName(user.getUserName());
+//        if(u != null){
+//            model.put("message", "Пользователь с таким логином уже существует.");
+//            return "registration";
+//        }
+//        return "redirect:/login";
+//    }
 }

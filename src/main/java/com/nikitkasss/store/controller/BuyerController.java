@@ -27,9 +27,7 @@ public class BuyerController {
 
     @PostMapping("/addBuyer")
     public void addBuyer(@RequestBody BuyerInfoDto dto) throws ConvertingException{
-        if(!(dto.getRoleName().equals(RoleEnum.BUYER.getValue()))){
-            throw new IllegalArgumentException(dto.getRoleName() + " not supported.");
-        }
+        System.out.println("gdfgdfg");
         buyerService.add(dto);
     }
 

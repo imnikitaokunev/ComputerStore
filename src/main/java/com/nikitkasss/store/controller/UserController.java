@@ -37,7 +37,7 @@ public class UserController {
     }
 
     @PostMapping("/addUser")
-    public void addUser(@RequestBody AllUserInfoDto dto) throws ConvertingException, IllegalArgumentException{
+    public void addUser(@RequestBody AllUserInfoDto dto) throws Exception, IllegalArgumentException{
         userService.add(dto);
     }
 

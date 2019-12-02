@@ -22,7 +22,7 @@ public class ProductController {
         //this.authenticationService = authenticationService;
     }
 
-    @GetMapping("/products")
+    @GetMapping("/allProducts")
     public List<AllProductInfoDto> getAllProducts(){
         return productService.allProducts();
     }

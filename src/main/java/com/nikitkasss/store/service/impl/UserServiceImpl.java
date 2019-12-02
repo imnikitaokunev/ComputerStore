@@ -9,6 +9,9 @@ import com.nikitkasss.store.model.AbstractUser;
 import com.nikitkasss.store.repository.UserRepository;
 import com.nikitkasss.store.service.UserService;
 import com.nikitkasss.store.service.converter.UserConverter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,8 +20,11 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional(readOnly = false)
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    AuthenticationManagerBuilder manager;
 
     private UserRepository userRepository;
     private UserConverter userConverter;
@@ -54,11 +60,24 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public void add(AllUserInfoDto dto) throws ConvertingException {
+    public void add(AllUserInfoDto dto) throws Exception {
         if(userRepository.getByUserName(dto.getUserName()) != null)
             throw new IllegalArgumentException("User with this login already exists." + dto.getUserName());
         AbstractUser user = userConverter.convertToUser(dto);
+
+        //register()
+//        System.out.println("REGISSTER" + dto.getUserName());
+//
+//        manager.inMemoryAuthentication()
+//                .withUser(user.getUserName())
+//                .password(user.getUserPassword())
+//                .roles(user.getUserRole().getValue());
         userRepository.save(user);
+    }
+
+    @Override
+    public AllUserInfoDto getByUserName(String username) throws ConvertingException {
+        return userRepository.getByUserName(username);
     }
 
 //    @Transactional

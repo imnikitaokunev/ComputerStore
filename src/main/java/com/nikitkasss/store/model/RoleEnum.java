@@ -1,7 +1,7 @@
 package com.nikitkasss.store.model;
 
 public enum RoleEnum {
-    SELLER("SELLER"),
+    SELLER("ROLE_SELLER"),
     BUYER("BUYER"),
     ADMIN("ADMIN");
 

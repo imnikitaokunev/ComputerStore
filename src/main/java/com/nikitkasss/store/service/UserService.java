@@ -16,7 +16,9 @@ public interface UserService {
 
     List<GeneralUserInfoDto> allUserGeneralInfo();
 
-    void add(AllUserInfoDto dto) throws ConvertingException;
+    void add(AllUserInfoDto dto) throws Exception;
+
+    AllUserInfoDto getByUserName(String username) throws ConvertingException;
 
     //void delete(AllUserInfoDto dto) throws ConvertingException;
 
