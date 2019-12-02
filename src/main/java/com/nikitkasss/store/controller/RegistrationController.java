@@ -20,13 +20,11 @@ public class RegistrationController {
     @Autowired
     private UserService service;
 
-
     @Autowired
     private BuyerService buyerService;
 
     @Autowired
     private AuthenticationManagerBuilder auth;
-
 
 //    public void register(AbstractUser user) throws Exception {
 //        auth.inMemoryAuthentication()
@@ -52,10 +50,7 @@ public class RegistrationController {
 
     @RequestMapping(value="/registration", method = RequestMethod.POST)
     public String register(@ModelAttribute BuyerInfoDto dto, BindingResult errors, Model model) throws Exception {
-        dto.setRoleName("BUYER");
-        System.out.println(dto.getUserName());
-        System.out.println(dto.getUserPassword());
-        System.out.println(dto.getRoleName());
+        dto.setRoleName("ROLE_BUYER");
         service.add(dto);
         return "redirect:/login";
     }

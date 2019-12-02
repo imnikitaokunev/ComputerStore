@@ -45,6 +45,11 @@ public class ProductServiceImpl implements ProductService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<AllProductInfoDto> getProductsByName(String productName) {
+        return productRepository.getByProductName(productName);
+    }
+
     @Transactional
     @Override
     public void add(AllProductInfoDto dto) throws ConvertingException {

@@ -22,4 +22,6 @@ public interface ProductService {
     void edit(AllProductInfoDto dto) throws ConvertingException;
 
     AllProductInfoDto getById(Long id) throws NoSuchEntityException;
+
+    List<AllProductInfoDto> getProductsByName(String productName);
 }

@@ -123,7 +123,11 @@ a {
 }
 
 .table-container {
-    padding: 2% 15%;
+    padding: 2% 20%;
+}
+
+.table-container-small{
+    padding: 2% 30%;
 }
 
 table {
@@ -149,4 +153,18 @@ th {
 
 img {
     margin-top: 3.5%;
+}
+
+.search {
+    font-size: 1.2rem;
+    padding: 0.2%;
+    border: #1c9f8a;
+    margin: 3% 25%;
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.search:focus {
+    width: 50%;
 }

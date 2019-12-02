@@ -3,20 +3,20 @@
     <head>
         <meta charset="UTF-8" />
         <title>Система учета продаж</title>
-        <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
-        <link rel="shortcut icon" href="/static/img/icon.ico" type="image/x-icon" />
-        <link rel="stylesheet" type="text/css" href="/static/css/fonts.css" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+        <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}"  />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
     </head>
     <body>
         <header>
             <div class="container">
                 <div class="navbar">
-                    <a href="/all/">
-                        <img src="/static/img/supkt2.png" class="logo" />
+                    <a th:href="@{/}">
+                        <img th:src="@{/img/supkt2.png}" class="logo" />
                     </a>
                     <ul>
                         <li>
-                            <a title="Регистрация" href="/registration">
+                            <a title="Регистрация" th:href="@{/registration}">
                                 Регистрация
                             </a>
                         </li>
@@ -32,7 +32,7 @@
                 Вы вышли из системы.
             </div>
         </div>
-        <form class="box" action="/all/login" method="post">
+        <form class="box" th:action="@{/login}" method="post">
             <div class="c-label box c-box-input">
                 <label> Логин: <input type="text" name="username" /> </label>
 

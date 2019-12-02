@@ -28,7 +28,7 @@ function submitRegister(){
         "email": email.value
     });
     xhr.send(data);
-    alert("Регистрация прошла успешно")
+    alert("Регистрация прошла успешно");
     relocateToMainPage();
 }
 

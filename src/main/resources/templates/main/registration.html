@@ -34,8 +34,7 @@
 <div class="text-center" style="margin-bottom: 3%;">
     <h1 class="c-text-h1">Регистрация</h1>
 </div>
-<!--<span th:text="#{welcome.message}"></span>-->
-<form action="#" th:action="@{/registration}" th:object="${usr}" method="post">
+<form class="box" action="#" th:action="@{/registration}" th:object="${usr}" method="post">
     <div class="c-label box c-box-input">
         <label> Имя: <input type="text" th:field="*{firstName}" /> </label>
         <label> Фамилия: <input type="text" th:field="*{lastName}" /> </label>
