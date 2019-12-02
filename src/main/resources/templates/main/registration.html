@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Регистрация</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}"  />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar">
+            <a th:href="@{/}">
+                <img th:src="@{/img/supkt2.png}" class="logo" />
+            </a>
+            <ul>
+                <li>
+                    <a title="Войти" th:href="@{/login}">
+                        Войти
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<!--<div class="box c-box-incorrect">-->
+<!--    <div class="c-label incorrect" th:if="${param.error}">-->
+<!--        Неправильный логин или пароль.-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="text-center" style="margin-bottom: 3%;">
+    <h1 class="c-text-h1">Регистрация</h1>
+</div>
+<!--<span th:text="#{welcome.message}"></span>-->
+<form action="#" th:action="@{/registration}" th:object="${usr}" method="post">
+    <div class="c-label box c-box-input">
+        <label> Имя: <input type="text" th:field="*{firstName}" /> </label>
+        <label> Фамилия: <input type="text" th:field="*{lastName}" /> </label>
+        <label> Отчество: <input type="text" th:field="*{patronymicName}" /> </label>
+        <label> Логин: <input type="text" th:field="*{userName}" /> </label>
+        <label> Пароль: <input type="text" th:field="*{userPassword}"  /> </label>
+        <label> Телефон: <input type="text" th:field="*{phone}" /> </label>
+        <label> Email: <input type="text" th:field="*{email}" /> </label>
+        <input type = "submit" class="login-button" value=" Регистрация " />
+    </div>
+</form>
+</body>
+</html>
