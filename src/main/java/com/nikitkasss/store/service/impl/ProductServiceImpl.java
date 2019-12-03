@@ -46,8 +46,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<AllProductInfoDto> getProductsByName(String productName) {
-        return productRepository.getByProductName(productName);
+    public List<AllProductInfoDto> getProductsByName(String name) {
+        return StreamSupport.stream(productRepository
+                .findAll().spliterator(), false)
+                .map(product -> productConverter.convertToAllProductInfoDto(product))
+                .filter(product -> product.getProductName().contains(name))
+                .collect(Collectors.toList());
     }
 
     @Transactional

@@ -13,12 +13,12 @@
 <header>
     <div class="container">
         <div class="navbar">
-            <a th:href="@{/}">
+            <a class="a-link-margin" th:href="@{/}">
                 <img th:src="@{/img/supkt2.png}" class="logo" />
             </a>
             <ul>
                 <li>
-                    <a title="Выйти" type="submit" th:href="@{/logout}">
+                    <a class="a-link-margin" title="Выйти" type="submit" th:href="@{/logout}">
                         Выйти
                     </a>
                 </li>
@@ -27,7 +27,7 @@
     </div>
 </header>
 <div class="text-center">
-    <h1 class="c-text-h1">Каталог продуктов</h1>
+    <h1 class="c-text-h1 margin-five">Каталог продуктов</h1>
     <div class="table-container-small">
         <table>
             <thead>
@@ -38,7 +38,7 @@
             </thead>
             <tbody>
             <tr th:each="product: ${products}">
-                <td th:utext="${product.id}"></td>
+                <td><a class="a-link-no-margin" th:href="@{/}" th:text="${product.id}"></a></td>
                 <td th:utext="${product.productName}"></td>
             </tr>
             </tbody>

@@ -17,12 +17,16 @@ button {
 }
 
 .c-text-h1 {
-    margin-top: 5%;
     color: #2c302f;
     font-family: "Montserrat";
     font-size: 2.25rem;
     font-weight: 800;
 }
+
+.margin-five{
+    margin-top: 5%;
+}
+
 
 .text-center {
     text-align: center;
@@ -109,9 +113,18 @@ ul {
 a {
     box-sizing: border-box;
     text-decoration: none;
-    margin-left: 2.5rem;
     line-height: 1.5;
     color: #606665;
+}
+
+.a-link-margin{
+    margin-left: 2.5rem;
+}
+
+.a-link-no-margin{
+    font-family: "Source Sans Pro Regular";
+    text-align: left;
+    padding: 6px;
 }
 
 .logo {
@@ -156,6 +169,7 @@ img {
 }
 
 .search {
+    font-family: Montserrat;
     font-size: 1.2rem;
     padding: 0.2%;
     border: #1c9f8a;

@@ -17,7 +17,7 @@
             </a>
             <ul>
                 <li>
-                    <a title="Выйти" type="submit" th:href="@{/logout}">
+                    <a class="a-link-margin" title="Выйти" type="submit" th:href="@{/logout}">
                         Выйти
                     </a>
                 </li>
@@ -25,9 +25,34 @@
         </div>
     </div>
 </header>
+
 <div class="text-center">
-    <h1 class="c-text-h1">Поиск продукта</h1>
-    <input class="search" name="search" placeholder="Поиск..">
+    <h1 class="c-text-h1 margin-five">Поиск продукта</h1>
+    <form th:action="@{/all/findProduct}" method="get">
+        <input class="search" type="text" name="search" th:value="${search}" placeholder="Поиск..">
+        <div th:if="${#lists.isEmpty(result)}" class="c-label incorrect">Ничего не найдено.</div>
+        <div th:if="${not #lists.isEmpty(result)}">
+            <h1 class="c-text-h1">Результаты поиска</h1>
+            <div class="table-container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Cost</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="product: ${result}">
+                        <td><a class="a-link-no-margin" th:href="@{/}" th:text="${product.id}"></a></td>
+                        <td th:text="${product.productName}"></td>
+                        <td th:text="${product.productCost}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
 
 </div>
 </body>

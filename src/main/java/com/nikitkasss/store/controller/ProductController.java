@@ -37,18 +37,27 @@ public class ProductController {
         return "product/productNames";
     }
 
-    @RequestMapping(value="/findProduct", method = RequestMethod.GET)
-    public String getProductsByName(Model model){
-        String name = "";
-        model.addAttribute("name", name);
-        return "product/findProduct";
-    }
+//    @RequestMapping(value="/findProduct", method = RequestMethod.GET)
+//    public String getProductsByName(Model model){
+//        String name = "";
+//        model.addAttribute("name", name);
+//        return "product/findProduct";
+//    }
 
     @RequestMapping(value="/findProduct", method = RequestMethod.POST)
     public String register(@ModelAttribute String name, BindingResult errors, Model model) throws Exception {
         List<AllProductInfoDto> products = productService.getProductsByName(name);
         System.out.println(name);
         return "redirect:/login";
+    }
+
+    @RequestMapping(value = "/findProduct", method = RequestMethod.GET)
+    public String showProductsByName(@RequestParam (value = "search", required = false, defaultValue = "") String name, Model model) {
+        //System.out.println(name);
+        List<AllProductInfoDto> products =  productService.getProductsByName(name);
+        model.addAttribute("result", products);
+        model.addAttribute("search", name);
+        return "product/findProduct";
     }
 
 
