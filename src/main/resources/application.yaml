@@ -10,8 +10,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        #hbm2ddl:
-          #auto: create
+#        hbm2ddl:
+#          auto: create
         temp:
           use_jdbc_metadata_defaults: false
   port: 8080

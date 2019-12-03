@@ -17,7 +17,7 @@ public class Product {
     private String productName;
 
     @Column(name = "product_cost")
-    private String productCost;
+    private Long productCost;
 
     @OneToMany(mappedBy = "product")
     private Set<Act> acts = new HashSet<>();
@@ -50,11 +50,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public String getProductCost() {
+    public Long getProductCost() {
         return productCost;
     }
 
-    public void setProductCost(String productCost) {
+    public void setProductCost(Long productCost) {
         this.productCost = productCost;
     }
 }

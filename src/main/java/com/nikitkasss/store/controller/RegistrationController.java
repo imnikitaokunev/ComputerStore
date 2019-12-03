@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -26,21 +28,6 @@ public class RegistrationController {
     @Autowired
     private AuthenticationManagerBuilder auth;
 
-//    public void register(AbstractUser user) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser(user.getUserName())
-//                .password(user.getUserPassword())
-//                .roles(user.getUserRole().getValue());
-//    }
-
-//    @RequestMapping(value="/registration", method = RequestMethod.GET)
-//    public void registratot(Model model) throws Exception {
-//        //model.addAttribute("user", new BuyerInfoDto());
-//        model.addAttribute("serverTime", "gfhfhfghfg");
-//
-//    }
-//
-
     @RequestMapping(value="/registration", method = RequestMethod.GET)
     public String register(Model model){
         BuyerInfoDto dto = new BuyerInfoDto();
@@ -48,15 +35,18 @@ public class RegistrationController {
         return "main/registration";
     }
 
+    //@RequestParam (value = "param", required = false) Error error,
     @RequestMapping(value="/registration", method = RequestMethod.POST)
     public String register(@ModelAttribute BuyerInfoDto dto, BindingResult errors, Model model) throws Exception {
         dto.setRoleName("ROLE_BUYER");
-        service.add(dto);
+        if(service.getByUserName(dto.getUserName()) != null){
+//            model.addAttribute("error", "Пользователь с таким логином уже существует.");
+//            return "main/registration";
+        }
+        else {
+            service.add(dto);
+        }
         return "redirect:/login";
     }
 
-//    @PostMapping("/registration")
-//    public void addUser(@RequestBody BuyerInfoDto dto) throws Exception {
-//        service.add(dto);
-//    }
 }

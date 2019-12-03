@@ -37,7 +37,7 @@ public class ProductConverter {
 
     private void throwExceptionIfDtoIsNotValid(AllProductInfoDto dto) throws ConvertingException {
         if(dto == null){
-            throw new ConvertingException("Product information must be not empty.");
+            throw new ConvertingException("Product information must be not null.");
         }
         if(dto.getProductName() == null){
             throw new ConvertingException("Name must be not empty.");

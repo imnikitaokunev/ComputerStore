@@ -1,6 +1,5 @@
 package com.nikitkasss.store.controller;
 
-
 import com.nikitkasss.store.dto.act.AllActInfoDto;
 import com.nikitkasss.store.exception.ConvertingException;
 import com.nikitkasss.store.exception.NoSuchEntityException;

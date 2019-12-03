@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Продукты</title>
+    <title>Вакансии</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
@@ -26,19 +26,19 @@
     </div>
 </header>
 <div class="text-center">
-    <h1 class="c-text-h1 margin-five">Каталог продуктов</h1>
-    <div class="table-container-small">
+    <h1 class="c-text-h1 margin-five">Список вакансий</h1>
+    <div class="table-container-small-40">
         <table>
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Название</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="product: ${products}">
-                <td><a class="a-link-no-margin" th:href="'/seller/editProduct?id=' + ${product.id}" th:text="${product.id}"></a></td>
-                <td th:utext="${product.productName}"></td>
+            <tr th:each="position: ${positions}">
+                <td><a class="a-link-no-margin" th:href="'/admin/editPosition?id=' + ${position.id}" th:text="${position.id}"></a></td>
+                <td th:utext="${position.positionName}"></td>
             </tr>
             </tbody>
         </table>

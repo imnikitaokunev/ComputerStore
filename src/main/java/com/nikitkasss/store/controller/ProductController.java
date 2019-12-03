@@ -8,7 +8,6 @@ import com.nikitkasss.store.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,12 +15,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/all")
 public class ProductController {
-    private ProductService productService;
 
     @Autowired
-    public ProductController(ProductService productService){
-        this.productService = productService;
-    }
+    private ProductService productService;
 
     @RequestMapping(value="/products", method = RequestMethod.GET)
     public String getAllProducts(Model model){
@@ -37,34 +33,13 @@ public class ProductController {
         return "product/productNames";
     }
 
-//    @RequestMapping(value="/findProduct", method = RequestMethod.GET)
-//    public String getProductsByName(Model model){
-//        String name = "";
-//        model.addAttribute("name", name);
-//        return "product/findProduct";
-//    }
-
-    @RequestMapping(value="/findProduct", method = RequestMethod.POST)
-    public String register(@ModelAttribute String name, BindingResult errors, Model model) throws Exception {
-        List<AllProductInfoDto> products = productService.getProductsByName(name);
-        System.out.println(name);
-        return "redirect:/login";
-    }
-
     @RequestMapping(value = "/findProduct", method = RequestMethod.GET)
     public String showProductsByName(@RequestParam (value = "search", required = false, defaultValue = "") String name, Model model) {
-        //System.out.println(name);
         List<AllProductInfoDto> products =  productService.getProductsByName(name);
         model.addAttribute("result", products);
         model.addAttribute("search", name);
         return "product/findProduct";
     }
-
-
-//    @GetMapping("/productNames")
-//    public List<ProductNameDto> getProductNames(){
-//        return productService.allProductNames();
-//    }
 
     @GetMapping("/findProduct/{id}")
     public AllProductInfoDto findProduct(@PathVariable("id") Long id) throws NoSuchEntityException {

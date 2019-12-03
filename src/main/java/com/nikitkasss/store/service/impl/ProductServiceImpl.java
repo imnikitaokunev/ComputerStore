@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -34,7 +35,9 @@ public class ProductServiceImpl implements ProductService {
         return StreamSupport.stream(productRepository
                 .findAll().spliterator(), false)
                 .map(product -> productConverter.convertToProductNameDto(product))
+                .sorted(Comparator.comparing(ProductNameDto::getId))
                 .collect(Collectors.toList());
+
     }
 
     @Override
@@ -42,6 +45,7 @@ public class ProductServiceImpl implements ProductService {
         return StreamSupport.stream(productRepository
                 .findAll().spliterator(), false)
                 .map(product -> productConverter.convertToAllProductInfoDto(product))
+                .sorted(Comparator.comparing(AllProductInfoDto::getId))
                 .collect(Collectors.toList());
     }
 

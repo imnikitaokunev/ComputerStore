@@ -33,37 +33,45 @@ public class SellerController {
     }
 
     @RequestMapping(value="/addProduct", method = RequestMethod.POST)
-    public String register(@ModelAttribute AllProductInfoDto dto, BindingResult errors, Model model) throws Exception {
+    public String addProduct(@ModelAttribute AllProductInfoDto dto, BindingResult errors, Model model) throws Exception {
         productService.add(dto);
         return "redirect:/all/products";
     }
 
-//    @GetMapping("/sellers")
-//    public List<SellerInfoDto> getAllSellers(){
-//        return sellerService.allSellers();
+    @RequestMapping(value = "/editProduct", method = RequestMethod.GET)
+    public String editProduct(@RequestParam (value = "id", required = true) Long id, Model model) {
+        AllProductInfoDto dto = productService.getById(id);
+        model.addAttribute("product", dto);
+        return "seller/editProduct";
+    }
+
+    @RequestMapping(value="/editProduct", method = RequestMethod.POST)
+    public String editProduct(@ModelAttribute AllProductInfoDto dto, BindingResult errors, Model model) throws Exception {
+        productService.edit(dto);
+        return "redirect:/all/products";
+    }
+
+//    @RequestMapping(value="/deleteProduct", method = RequestMethod.GET)
+//    public String deleteProduct(Model model){
+//        List<AllProductInfoDto> products = productService.allProducts();
+//        model.addAttribute("products", products);
+//        return "seller/deleteProduct";
 //    }
-//
-//    @PostMapping("/addSeller")
-//    public void addSeller(@RequestBody SellerInfoDto dto) throws ConvertingException, IllegalArgumentException{
-//        if(!(dto.getRoleName().equals(RoleEnum.ROLE_SELLER.getValue())) && !(dto.getRoleName().equals(RoleEnum.ROLE_ADMIN.getValue()))){
-//            throw new IllegalArgumentException(dto.getRoleName() + " not supported.");
-//        }
-//        sellerService.add(dto);
-//    }
-//
-//    @PostMapping("/editSeller")
-//    public void editSeller(@RequestBody SellerInfoDto dto) throws ConvertingException{
-//        sellerService.edit(dto);
-//    }
-//
-//    @DeleteMapping("/deleteSeller/{id}")
-//    public void deleteSeller(@PathVariable("id") Long id) throws ConvertingException, NoSuchEntityException{
-//        SellerInfoDto dto = sellerService.getById(id);
-//        sellerService.delete(dto);
-//    }
-//
-//    @GetMapping("/findSeller/{id}")
-//    public SellerInfoDto findSeller(@PathVariable("id") Long id) throws NoSuchEntityException{
-//        return sellerService.getById(id);
+
+    @RequestMapping(value = "/deleteProduct", method = RequestMethod.GET)
+    public String deleteProduct(@RequestParam (value = "id", required = false) Long id,  Model model){
+        if(id != null){
+            AllProductInfoDto dto = productService.getById(id);
+            productService.delete(dto);
+        }
+        List<AllProductInfoDto> products = productService.allProducts();
+        model.addAttribute("products", products);
+        return "seller/deleteProduct";
+    }
+
+//    @RequestMapping(value="/deleteProduct", method = RequestMethod.POST)
+//    public String deleteProduct(@ModelAttribute AllProductInfoDto dto, BindingResult errors, Model model) throws Exception{
+//        productService.delete(dto);
+//        return "seller/deleteProduct";
 //    }
 }

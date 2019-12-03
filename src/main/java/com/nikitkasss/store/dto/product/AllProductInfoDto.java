@@ -4,7 +4,7 @@ public class AllProductInfoDto {
 
     private Long id;
     private String productName;
-    private String productCost;
+    private Long productCost;
 
     public Long getId() {
         return id;
@@ -22,11 +22,11 @@ public class AllProductInfoDto {
         this.productName = productName;
     }
 
-    public String getProductCost() {
+    public Long getProductCost() {
         return productCost;
     }
 
-    public void setProductCost(String productCost) {
+    public void setProductCost(Long productCost) {
         this.productCost = productCost;
     }
 }

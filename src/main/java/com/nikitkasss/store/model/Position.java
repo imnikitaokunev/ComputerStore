@@ -16,6 +16,9 @@ public class Position {
     @Column(name="position_name")
     private String name;
 
+    @Column(name="position_salary")
+    private Long salary;
+
     @OneToMany(mappedBy = "position")
     Set<Seller> sellerSet = new HashSet<>();
 
@@ -35,7 +38,21 @@ public class Position {
         this.name = name;
     }
 
+    public Long getSalary() {
+        return salary;
+    }
 
+    public void setSalary(Long salary) {
+        this.salary = salary;
+    }
+
+    public Set<Seller> getSellerSet() {
+        return sellerSet;
+    }
+
+    public void setSellerSet(Set<Seller> sellerSet) {
+        this.sellerSet = sellerSet;
+    }
 
 //    public Set<Seller> getSellerSet() {
 //        return sellerSet;

@@ -143,6 +143,10 @@ a {
     padding: 2% 30%;
 }
 
+.table-container-small-40{
+    padding: 2% 40%;
+}
+
 table {
     font-family: "Source Sans Pro Regular";
     border-collapse: collapse;
@@ -150,7 +154,7 @@ table {
 }
 
 th,
-td {
+td{
     text-align: left;
     padding: 8px;
 }
@@ -181,4 +185,18 @@ img {
 
 .search:focus {
     width: 50%;
+}
+
+.td-x-container{
+    text-align: center;
+}
+
+.red-x{
+    font-family: Montserrat;
+    font-weight: 900;
+    color:red;
+}
+
+.red-x:hover{
+    color:#B00000;
 }

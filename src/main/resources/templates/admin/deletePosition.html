@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Продукты</title>
+    <title>Удаление вакансий</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
@@ -26,22 +26,28 @@
     </div>
 </header>
 <div class="text-center">
-    <h1 class="c-text-h1 margin-five">Каталог продуктов</h1>
-    <div class="table-container-small">
+    <h1 class="c-text-h1 margin-five">Список вакансий</h1>
+    <div class="table-container">
+
         <table>
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Название</th>
+                <th>Зар.плата</th>
+                <th style="text-align: center;">Удалить</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="product: ${products}">
-                <td><a class="a-link-no-margin" th:href="'/seller/editProduct?id=' + ${product.id}" th:text="${product.id}"></a></td>
-                <td th:utext="${product.productName}"></td>
+            <tr th:each="position: ${positions}">
+                <td><a class="a-link-no-margin" th:href="'/admin/editPosition?id=' + ${position.id}"  th:text="${position.id}"></a></td>
+                <td th:utext="${position.positionName}"></td>
+                <td th:utext="${position.positionSalary}"></td>
+                <td class="td-x-container"><a class="a-link-no-margin red-x" th:href="'/admin/deletePosition?id=' + ${position.id}">x</a></td>
             </tr>
             </tbody>
         </table>
+        </form>
     </div>
 </div>
 </body>

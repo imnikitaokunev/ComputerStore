@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Редактирование продукта</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+    <script type="text/javascript" th:src="@{/scripts/product/editProduct.js}"></script>
+</head>
+<body onload="onLoad()">
+<header>
+    <div class="container">
+        <div class="navbar">
+            <a th:href="@{/}">
+                <img th:src="@{/img/supkt2.png}" class="logo" />
+            </a>
+            <ul>
+                <li>
+                    <a title="Назад" th:href="@{/}">
+                        Назад
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<div class="text-center">
+    <h1 class="c-text-h1 margin-five">Редактирование продукта</h1>
+
+    <form class="box" action="#" th:action="@{/seller/editProduct}" th:object="${product}" method="post">
+        <div class="c-label box c-box-input">
+            <label> Название: <input id="name" type="text" th:value="${product.productName}" th:field="*{productName}" /> </label>
+            <label> Стоимость: <input id="cost" type="text" th:value="${product.productCost}" th:field="*{productCost}" /> </label>
+            <input type="hidden" th:value="${product.id}" th:field="*{id}" />
+            <input type = "submit" class="login-button" value=" Изменить " onclick="showMessage()"/>
+        </div>
+    </form>
+
+
+</div>
+</body>
+</html>

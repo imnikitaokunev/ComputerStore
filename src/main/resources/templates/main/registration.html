@@ -25,11 +25,21 @@
         </div>
     </div>
 </header>
-<!--<div class="box c-box-incorrect">-->
-<!--    <div class="c-label incorrect" th:if="${param.error}">-->
-<!--        Неправильный логин или пароль.-->
-<!--    </div>-->
+
+<!--<input type="text" th:field="*{error}"-->
+<!--       th:class="${#fields.hasErrors('dto')}? fieldError" />-->
+
+<!--<div class="c-label incorrect" th:if="${param.error}">-->
+<!--    Неправильный логин или пароль.-->
 <!--</div>-->
+
+<!--<div class="box c-box-incorrect">&ndash;&gt;-->
+<!--    <div class="c-label incorrect" th:if="${#fields.hasErrors('dto')}" th:errors="*{dto}">-->
+<!--        <label  class="c-label incorrect" >Пользователь с таким логином уже существует.</label>-->
+<!--   </div>-->
+<!--</div>-->
+
+
 
 <div class="text-center" style="margin-bottom: 3%;">
     <h1 class="c-text-h1 margin-five">Регистрация</h1>

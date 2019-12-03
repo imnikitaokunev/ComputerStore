@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Поиск продукта</title>
+    <title>Поиск вакансии</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
@@ -27,8 +27,8 @@
 </header>
 
 <div class="text-center">
-    <h1 class="c-text-h1 margin-five">Поиск продукта</h1>
-    <form th:action="@{/all/findProduct}" method="get">
+    <h1 class="c-text-h1 margin-five">Поиск вакансии</h1>
+    <form th:action="@{/all/findPosition}" method="get">
         <input class="search" type="text" name="search" th:value="${search}" placeholder="Поиск..">
         <div th:if="${#lists.isEmpty(result)}" class="c-label incorrect">Ничего не найдено.</div>
         <div th:if="${not #lists.isEmpty(result)}">
@@ -39,14 +39,14 @@
                     <tr>
                         <th>Id</th>
                         <th>Название</th>
-                        <th>Стоимость</th>
+                        <th>Зар.плата</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="product: ${result}">
-                        <td><a class="a-link-no-margin" th:href="'/seller/editProduct?id=' + ${product.id}"  th:text="${product.id}"></a></td>
-                        <td th:text="${product.productName}"></td>
-                        <td th:text="${product.productCost}"></td>
+                    <tr th:each="position: ${result}">
+                        <td><a class="a-link-no-margin" th:href="'/admin/editPosition?id=' + ${position.id}"  th:text="${position.id}"></a></td>
+                        <td th:text="${position.positionName}"></td>
+                        <td th:text="${position.positionSalary}"></td>
                     </tr>
                     </tbody>
                 </table>

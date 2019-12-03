@@ -28,6 +28,7 @@
         <div class="text-center">
             <h1 class="c-text-h1 margin-five">Каталог продуктов</h1>
             <div class="table-container">
+
                 <table>
                     <thead>
                         <tr>
@@ -38,12 +39,13 @@
                     </thead>
                     <tbody>
                         <tr th:each="product: ${products}">
-                            <td><a class="a-link-no-margin" th:href="@{/}" th:text="${product.id}"></a></td>
+                            <td><a class="a-link-no-margin" th:href="'/seller/editProduct?id=' + ${product.id}"  th:text="${product.id}"></a></td>
                             <td th:utext="${product.productName}"></td>
                             <td th:utext="${product.productCost}"></td>
                         </tr>
                     </tbody>
                 </table>
+                </form>
             </div>
         </div>
     </body>
