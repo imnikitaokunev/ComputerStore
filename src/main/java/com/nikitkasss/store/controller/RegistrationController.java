@@ -44,7 +44,8 @@ public class RegistrationController {
 //            return "main/registration";
         }
         else {
-            service.add(dto);
+            //service.add(dto);
+            buyerService.add(dto);
         }
         return "redirect:/login";
     }

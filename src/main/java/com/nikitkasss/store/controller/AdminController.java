@@ -2,7 +2,11 @@ package com.nikitkasss.store.controller;
 
 import com.nikitkasss.store.dto.position.PositionInfoDto;
 import com.nikitkasss.store.dto.position.PositionNameDto;
+import com.nikitkasss.store.dto.user.SellerInfoDto;
+import com.nikitkasss.store.model.Seller;
 import com.nikitkasss.store.service.PositionService;
+import com.nikitkasss.store.service.SellerService;
+import com.nikitkasss.store.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +24,14 @@ public class AdminController {
 
     @Autowired
     private PositionService positionService;
+
+    @Autowired
+    private UserService service;
+
+    @Autowired
+    private SellerService sellerService;
+
+    //--------------Position------------------
 
     @RequestMapping(value="/addPosition", method = RequestMethod.GET)
     public String addPosition(Model model){
@@ -58,5 +70,73 @@ public class AdminController {
         return "admin/deletePosition";
     }
 
+
+    //-------------------Seller-------------------------
+
+    @RequestMapping(value="/addSeller", method = RequestMethod.GET)
+    public String addSeller(Model model){
+        SellerInfoDto dto = new SellerInfoDto();
+        model.addAttribute("seller", dto);
+        return "admin/addSeller";
+    }
+
+    @RequestMapping(value="/addSeller", method = RequestMethod.POST)
+    public String addSeller(@ModelAttribute SellerInfoDto dto, BindingResult errors, Model model) throws Exception {
+        dto.setRoleName("ROLE_SELLER");
+        if(service.getByUserName(dto.getUserName()) != null){
+//            model.addAttribute("error", "Пользователь с таким логином уже существует.");
+//            return "main/registration";
+        }
+        else {
+            sellerService.add(dto);
+        }
+        return "redirect:/seller/sellers";
+    }
+
+    @RequestMapping(value="/sellers", method = RequestMethod.GET)
+    public String allSellers(Model model){
+        List<SellerInfoDto> sellers = sellerService.allSellers();
+        model.addAttribute("sellers", sellers);
+        return "admin/sellers";
+    }
+
+
+    @RequestMapping(value = "/findSeller", method = RequestMethod.GET)
+    public String showSellers(@RequestParam (value = "search", required = false, defaultValue = "") String name, Model model) {
+        List<SellerInfoDto> sellers =  sellerService.getSellersByParam(name);
+        model.addAttribute("result", sellers);
+        model.addAttribute("search", name);
+        return "admin/findSeller";
+    }
+
+    @RequestMapping(value = "/editSeller", method = RequestMethod.GET)
+    public String editSeller(@RequestParam(value = "id", required = true) Long id, Model model) {
+        SellerInfoDto dto = sellerService.getById(id);
+        model.addAttribute("seller", dto);
+        return "admin/editSeller";
+    }
+
+    @RequestMapping(value="/editSeller", method = RequestMethod.POST)
+    public String editSeller(@ModelAttribute SellerInfoDto dto, BindingResult errors, Model model) throws Exception {
+        sellerService.edit(dto);
+        return "redirect:/admin/sellers";
+    }
+
+    @RequestMapping(value = "/deleteSeller", method = RequestMethod.GET)
+    public String deleteSeller(@RequestParam (value = "id", required = false) Long id,  Model model){
+        if(id != null){
+            SellerInfoDto dto = sellerService.getById(id);
+            sellerService.delete(dto);
+        }
+        List<SellerInfoDto> sellers = sellerService.allSellers();
+        model.addAttribute("sellers", sellers);
+        return "admin/deleteSeller";
+    }
+
+    @RequestMapping(value="/deleteSeller", method = RequestMethod.POST)
+    public String deleteSeller(@ModelAttribute SellerInfoDto dto, BindingResult errors, Model model) throws Exception {
+        sellerService.delete(dto);
+        return "redirect:/admin/sellers";
+    }
 
 }

@@ -32,8 +32,6 @@ import java.util.Properties;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-
-
     @Autowired
     private DataSource dataSource;
 

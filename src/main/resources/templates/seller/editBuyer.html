@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Редактирование покупателя</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar">
+            <a th:href="@{/}">
+                <img th:src="@{/img/supkt2.png}" class="logo" />
+            </a>
+            <ul>
+                <li>
+                    <a title="Назад" th:href="@{/}">
+                        Назад
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<div class="text-center">
+    <h1 class="c-text-h1 margin-five margin-bottom-five">Редактирование покупателя</h1>
+
+<!--    <form class="box" action="#" th:action="@{/seller/editBuyer}" th:object="${buyer}" method="post">-->
+<!--        <div class="c-label box c-box-input">-->
+<!--            <label> Название: <input id="name" type="text" th:value="${product.productName}" th:field="*{productName}" /> </label>-->
+<!--            <label> Стоимость: <input id="cost" type="text" th:value="${product.productCost}" th:field="*{productCost}" /> </label>-->
+<!--            <input type="hidden" th:value="${product.id}" th:field="*{id}" />-->
+<!--            <input type = "submit" class="login-button" value=" Изменить " onclick="showMessage()"/>-->
+<!--        </div>-->
+<!--    </form>-->
+
+
+    <form class="box" action="#" th:action="@{/seller/editBuyer}" th:object="${buyer}" method="post">
+        <div class="c-label box c-box-input">
+            <label> Имя: <input type="text" th:field="*{firstName}" /> </label>
+            <label> Фамилия: <input type="text" th:field="*{lastName}" /> </label>
+            <label> Отчество: <input type="text" th:field="*{patronymicName}" /> </label>
+            <label> Логин: <input type="text" th:field="*{userName}" /> </label>
+            <label> Пароль: <input type="text" th:field="*{userPassword}"  /> </label>
+            <label> Телефон: <input type="text" th:field="*{phone}" /> </label>
+            <label> Email: <input type="text" th:field="*{email}" /> </label>
+            <input type="hidden" th:value="${buyer.id}" th:field="*{id}" />
+            <input type="hidden" th:value="${buyer.roleName}" th:field="*{roleName}" />
+            <input type = "submit" class="login-button" value=" Изменить "/>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

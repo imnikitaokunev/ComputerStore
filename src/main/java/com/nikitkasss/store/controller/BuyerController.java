@@ -20,6 +20,7 @@ public class BuyerController {
         this.buyerService = buyerService;
     }
 
+
     @GetMapping("/buyers")
     public List<BuyerInfoDto> getAllBuyers(){
         return buyerService.allBuyers();

@@ -1,5 +1,6 @@
 package com.nikitkasss.store.service.impl;
 
+import com.nikitkasss.store.dto.user.GeneralUserInfoDto;
 import com.nikitkasss.store.dto.user.SellerInfoDto;
 import com.nikitkasss.store.exception.ConvertingException;
 import com.nikitkasss.store.exception.NoSuchEntityException;
@@ -10,6 +11,7 @@ import com.nikitkasss.store.service.converter.UserConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -31,6 +33,7 @@ public class SellerServiceImpl implements SellerService {
         return StreamSupport.stream(sellerRepository
                 .findAll().spliterator(), false)
                 .map(seller -> userConverter.convertToSellerInfoDto(seller))
+                .sorted(Comparator.comparing(SellerInfoDto::getId))
                 .collect(Collectors.toList());
     }
 
@@ -64,4 +67,40 @@ public class SellerServiceImpl implements SellerService {
         Seller seller = sellerRepository.findById(id).orElseThrow(() -> new NoSuchEntityException(String.format("Can't find entity by id = %id", id)));
         return userConverter.convertToSellerInfoDto(seller);
     }
+
+    @Override
+    public List<SellerInfoDto> getSellersByParam(String param) {
+        return StreamSupport.stream(sellerRepository
+                .findAll().spliterator(), false)
+                .map(seller -> userConverter.convertToSellerInfoDto(seller))
+                .filter(seller -> seller.getFirstName().contains(param)
+                        || seller.getLastName().contains(param)
+                        || seller.getPatronymicName().contains(param)
+                        || seller.getUserName().contains(param)
+                        || seller.getUserPassword().contains(param)
+                        || seller.getRoleName().contains(param))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<GeneralUserInfoDto> getGeneralSellersInfo(){
+        return StreamSupport.stream(sellerRepository
+                .findAll().spliterator(), false)
+                .map(seller -> userConverter.convertToGeneralUserInfoDto(seller))
+                .sorted(Comparator.comparing(GeneralUserInfoDto::getId))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<GeneralUserInfoDto> getSellersGeneralInfoByParam(String param){
+        return StreamSupport.stream(sellerRepository
+                .findAll().spliterator(), false)
+                .map(seller -> userConverter.convertToGeneralUserInfoDto(seller))
+                .filter(seller -> seller.getFirstName().contains(param)
+                        || seller.getLastName().contains(param)
+                        || seller.getUserName().contains(param))
+                .sorted(Comparator.comparing(GeneralUserInfoDto::getId))
+                .collect(Collectors.toList());
+    }
+
 }

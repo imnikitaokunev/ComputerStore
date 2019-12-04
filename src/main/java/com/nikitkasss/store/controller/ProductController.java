@@ -19,15 +19,21 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @GetMapping("/buyerPage")
+    public String buyerPage(){
+        return "main/buyerPage";
+    };
+
+
     @RequestMapping(value="/products", method = RequestMethod.GET)
-    public String getAllProducts(Model model){
+    public String allProducts(Model model){
         List<AllProductInfoDto> products = productService.allProducts();
         model.addAttribute("products", products);
         return "product/products";
     }
 
     @RequestMapping(value="/productNames", method = RequestMethod.GET)
-    public String getProductNames(Model model){
+    public String productNames(Model model){
         List<ProductNameDto> products = productService.allProductNames();
         model.addAttribute("products", products);
         return "product/productNames";

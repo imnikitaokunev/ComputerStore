@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Добавление работника</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}"  />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar">
+            <a class="a-link-margin" th:href="@{/}">
+                <img th:src="@{/img/supkt2.png}" class="logo" />
+            </a>
+            <ul>
+                <li>
+                    <a class="a-link-margin" title="Войти" th:href="@{/login}">
+                        Войти
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<!--<input type="text" th:field="*{error}"-->
+<!--       th:class="${#fields.hasErrors('dto')}? fieldError" />-->
+
+<!--<div class="c-label incorrect" th:if="${param.error}">-->
+<!--    Неправильный логин или пароль.-->
+<!--</div>-->
+
+<!--<div class="box c-box-incorrect">&ndash;&gt;-->
+<!--    <div class="c-label incorrect" th:if="${#fields.hasErrors('dto')}" th:errors="*{dto}">-->
+<!--        <label  class="c-label incorrect" >Пользователь с таким логином уже существует.</label>-->
+<!--   </div>-->
+<!--</div>-->
+
+
+
+<div class="text-center" style="margin-bottom: 3%;">
+    <h1 class="c-text-h1 margin-five">Добавление работника</h1>
+</div>
+<form class="box" action="#" th:action="@{/admin/addSeller}" th:object="${seller}" method="post">
+    <div class="c-label box c-box-input">
+        <label> Имя: <input type="text" th:field="*{firstName}" /> </label>
+        <label> Фамилия: <input type="text" th:field="*{lastName}" /> </label>
+        <label> Отчество: <input type="text" th:field="*{patronymicName}" /> </label>
+        <label> Логин: <input type="text" th:field="*{userName}" /> </label>
+        <label> Пароль: <input type="text" th:field="*{userPassword}"  /> </label>
+        <label> Id должности <input type="text" th:field="*{positionId}" /> </label>
+        <input type = "submit" class="login-button" value=" Добавить " />
+    </div>
+</form>
+</body>
+</html>

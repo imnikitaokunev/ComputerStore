@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Вакансии</title>
+    <title>Работники</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
@@ -12,7 +12,7 @@
 <header>
     <div class="container">
         <div class="navbar">
-            <a class="a-link-margin" th:href="@{/all/buyerPage}">
+            <a class="a-link-margin" th:href="@{/}">
                 <img th:src="@{/img/supkt2.png}" class="logo" />
             </a>
             <ul>
@@ -26,24 +26,34 @@
     </div>
 </header>
 <div class="text-center">
-    <h1 class="c-text-h1 margin-five">Список вакансий</h1>
-    <div class="table-container-small-40">
+    <h1 class="c-text-h1 margin-five">Список работников</h1>
+    <div class="table-container">
+
         <table>
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Название</th>
-                <th style="text-align: center;">Зар.плата</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Отчество</th>
+                <th>Логин</th>
+                <th>Пароль</th>
+                <th>Id должн.</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="position: ${positions}">
-                <td><a class="a-link-no-margin" th:href="'/admin/editPosition?id=' + ${position.id}" th:text="${position.id}"></a></td>
-                <td th:utext="${position.positionName}"></td>
-                <td style="text-align: center;" th:utext="${position.positionSalary}"></td>
+            <tr th:each="seller: ${sellers}">
+                <td><a class="a-link-no-margin" th:href="'/admin/editSeller?id=' + ${seller.id}"  th:text="${seller.id}"></a></td>
+                <td th:utext="${seller.firstName}"></td>
+                <td th:utext="${seller.lastName}"></td>
+                <td th:utext="${seller.patronymicName}"></td>
+                <td th:utext="${seller.userName}"></td>
+                <td th:utext="${seller.userPassword}"></td>
+                <td th:utext="${seller.positionId}"></td>
             </tr>
             </tbody>
         </table>
+        </form>
     </div>
 </div>
 </body>

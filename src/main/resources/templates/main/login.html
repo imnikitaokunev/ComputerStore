@@ -11,7 +11,7 @@
         <header>
             <div class="container">
                 <div class="navbar">
-                    <a class="a-link-margin" th:href="@{/}">
+                    <a class="a-link-margin" th:href="@{/all/buyerPage}">
                         <img th:src="@{/img/supkt2.png}" class="logo" />
                     </a>
                     <ul>
@@ -35,11 +35,8 @@
         <form class="box" th:action="@{/login}" method="post">
             <div class="c-label box c-box-input">
                 <label> Логин: <input type="text" name="username" /> </label>
-
-                <label>
-                    Пароль: <input type="password" name="password" />
-                </label>
-                <input class="login-button" type="submit" value=" Войти " />
+                <label> Пароль: <input type="password" name="password" />
+                </label> <input class="login-button" type="submit" value=" Войти " />
             </div>
         </form>
     </body>

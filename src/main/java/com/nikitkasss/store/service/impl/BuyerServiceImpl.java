@@ -10,6 +10,7 @@ import com.nikitkasss.store.service.converter.UserConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -31,6 +32,7 @@ public class BuyerServiceImpl implements BuyerService {
         return StreamSupport.stream(buyerRepository
         .findAll().spliterator(), false)
                 .map(buyer -> userConverter.convertToBuyerInfoDto(buyer))
+                .sorted(Comparator.comparing(BuyerInfoDto::getId))
                 .collect(Collectors.toList());
     }
 
@@ -60,4 +62,22 @@ public class BuyerServiceImpl implements BuyerService {
         Buyer buyer = buyerRepository.findById(id).orElseThrow(() -> new NoSuchEntityException(String.format("Can't find entity by id = %id", id)));
         return userConverter.convertToBuyerInfoDto(buyer);
     }
+
+    @Override
+    public List<BuyerInfoDto> getBuyersByParam(String param) {
+        return StreamSupport.stream(buyerRepository
+                .findAll().spliterator(), false)
+                .map(buyer -> userConverter.convertToBuyerInfoDto(buyer))
+                .filter(buyer -> buyer.getFirstName().contains(param)
+                || buyer.getLastName().contains(param)
+                || buyer.getPatronymicName().contains(param)
+                || buyer.getUserName().contains(param)
+                || buyer.getUserPassword().contains(param)
+                || buyer.getRoleName().contains(param)
+                || buyer.getEmail().contains(param)
+                || buyer.getPhone().contains(param))
+                .collect(Collectors.toList());
+    }
+
+
 }

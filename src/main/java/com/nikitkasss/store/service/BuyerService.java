@@ -17,4 +17,6 @@ public interface BuyerService {
     void edit(BuyerInfoDto dto) throws ConvertingException;
 
     BuyerInfoDto getById(Long id) throws NoSuchEntityException;
+
+    List<BuyerInfoDto> getBuyersByParam(String param);
 }

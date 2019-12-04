@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Удаление покупателей</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+<header>
+    <div class="container">
+        <div class="navbar">
+            <a class="a-link-margin" th:href="@{/}">
+                <img th:src="@{/img/supkt2.png}" class="logo" />
+            </a>
+            <ul>
+                <li>
+                    <a class="a-link-margin" title="Выйти" type="submit" th:href="@{/logout}">
+                        Выйти
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="text-center">
+    <h1 class="c-text-h1 margin-five">Список покупателей</h1>
+    <div class="table-container">
+
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Отчество</th>
+                <th>Логин</th>
+                <th>Пароль</th>
+                <th>Телефон</th>
+                <th>Email</th>
+                <th style="text-align: center;">Удалить</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="buyer: ${buyers}">
+                <td><a class="a-link-no-margin" th:href="'/seller/editBuyer?id=' + ${buyer.id}"  th:text="${buyer.id}"></a></td>
+                <td th:utext="${buyer.firstName}"></td>
+                <td th:utext="${buyer.lastName}"></td>
+                <td th:utext="${buyer.patronymicName}"></td>
+                <td th:utext="${buyer.userName}"></td>
+                <td th:utext="${buyer.userPassword}"></td>
+                <td th:utext="${buyer.phone}"></td>
+                <td th:utext="${buyer.email}"></td>
+                <td class="td-x-container"><a class="a-link-no-margin red-x" th:href="'/seller/deleteBuyer?id=' + ${buyer.id}">x</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
