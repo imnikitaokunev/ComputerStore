@@ -73,6 +73,18 @@
                         <li><a class="a-link-margin" title="Список работников" th:href="@{/seller/sellers}">
                             Список работников</a>
                         </li>
+                        <li><a class="a-link-margin" title="Добавить акт" th:href="@{/seller/addAct}">
+                            Добавить акт</a>
+                        </li>
+                        <li><a class="a-link-margin" title="Удалить акт" th:href="@{/seller/deleteAct}">
+                            Удалить акт</a>
+                        </li>
+                        <li><a class="a-link-margin" title="Список актов" th:href="@{/seller/acts}">
+                            Список актов</a>
+                        </li>
+                        <li><a class="a-link-margin" title="Поиск актов" th:href="@{/seller/findAct}">
+                            Поиск актов</a>
+                        </li>
                     </div>
                     <div th:if="${#request.isUserInRole('ADMIN')}">
                         <li><a class="a-link-margin" title="Добавить вакансию" th:href="@{/admin/addPosition}">

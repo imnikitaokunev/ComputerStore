@@ -11134,7 +11134,7 @@ Using generated security password: 077a8195-59f5-475f-b340-9185559a0f8d
 2019-12-01 21:33:35.136  INFO 316 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
 2019-12-01 21:33:36.039  WARN 316 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2019-12-01 21:33:36.107  WARN 316 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'springSecurityFilterChain' defined in class path resource [org/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'productController' method 
-public java.util.List<com.nikitkasss.store.dto.product.AllProductInfoDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
+public java.util.List<com.nikitkasss.store.dto.ProductDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
 to {GET /all/products}: There is already 'pageController' bean method
 public java.lang.String com.nikitkasss.store.controller.PageController.allProductsPage() mapped.
 2019-12-01 21:33:36.110  INFO 316 --- [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
@@ -11147,7 +11147,7 @@ Error starting ApplicationContext. To display the conditions report re-run your 
 2019-12-01 21:33:36.188 ERROR 316 --- [main] o.s.boot.SpringApplication               : Application run failed
 
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'springSecurityFilterChain' defined in class path resource [org/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'productController' method 
-public java.util.List<com.nikitkasss.store.dto.product.AllProductInfoDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
+public java.util.List<com.nikitkasss.store.dto.ProductDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
 to {GET /all/products}: There is already 'pageController' bean method
 public java.lang.String com.nikitkasss.store.controller.PageController.allProductsPage() mapped.
 	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:627) ~[spring-beans-5.1.9.RELEASE.jar:5.1.9.RELEASE]
@@ -11173,14 +11173,14 @@ public java.lang.String com.nikitkasss.store.controller.PageController.allProduc
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1204) ~[spring-boot-2.1.8.RELEASE.jar:2.1.8.RELEASE]
 	at com.nikitkasss.store.Application.main(Application.java:11) ~[classes/:na]
 Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'productController' method 
-public java.util.List<com.nikitkasss.store.dto.product.AllProductInfoDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
+public java.util.List<com.nikitkasss.store.dto.ProductDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
 to {GET /all/products}: There is already 'pageController' bean method
 public java.lang.String com.nikitkasss.store.controller.PageController.allProductsPage() mapped.
 	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185) ~[spring-beans-5.1.9.RELEASE.jar:5.1.9.RELEASE]
 	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622) ~[spring-beans-5.1.9.RELEASE.jar:5.1.9.RELEASE]
 	... 21 common frames omitted
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'productController' method 
-public java.util.List<com.nikitkasss.store.dto.product.AllProductInfoDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
+public java.util.List<com.nikitkasss.store.dto.ProductDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
 to {GET /all/products}: There is already 'pageController' bean method
 public java.lang.String com.nikitkasss.store.controller.PageController.allProductsPage() mapped.
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778) ~[spring-beans-5.1.9.RELEASE.jar:5.1.9.RELEASE]
@@ -11216,7 +11216,7 @@ public java.lang.String com.nikitkasss.store.controller.PageController.allProduc
 	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154) ~[spring-beans-5.1.9.RELEASE.jar:5.1.9.RELEASE]
 	... 22 common frames omitted
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'productController' method 
-public java.util.List<com.nikitkasss.store.dto.product.AllProductInfoDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
+public java.util.List<com.nikitkasss.store.dto.ProductDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
 to {GET /all/products}: There is already 'pageController' bean method
 public java.lang.String com.nikitkasss.store.controller.PageController.allProductsPage() mapped.
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778) ~[spring-beans-5.1.9.RELEASE.jar:5.1.9.RELEASE]
@@ -11235,7 +11235,7 @@ public java.lang.String com.nikitkasss.store.controller.PageController.allProduc
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774) ~[spring-beans-5.1.9.RELEASE.jar:5.1.9.RELEASE]
 	... 52 common frames omitted
 Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'productController' method 
-public java.util.List<com.nikitkasss.store.dto.product.AllProductInfoDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
+public java.util.List<com.nikitkasss.store.dto.ProductDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
 to {GET /all/products}: There is already 'pageController' bean method
 public java.lang.String com.nikitkasss.store.controller.PageController.allProductsPage() mapped.
 	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.assertUniqueMethodMapping(AbstractHandlerMethodMapping.java:618) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]
@@ -11276,7 +11276,7 @@ public java.lang.String com.nikitkasss.store.controller.PageController.allProduc
 2019-12-01 21:53:28.022  INFO 12320 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
 2019-12-01 21:53:28.812  WARN 12320 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2019-12-01 21:53:28.870  WARN 12320 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'springSecurityFilterChain' defined in class path resource [org/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'productController' method 
-public java.util.List<com.nikitkasss.store.dto.product.AllProductInfoDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
+public java.util.List<com.nikitkasss.store.dto.ProductDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
 to {GET /all/products}: There is already 'pageController' bean method
 public java.lang.String com.nikitkasss.store.controller.PageController.allProductsPage() mapped.
 2019-12-01 21:53:28.872  INFO 12320 --- [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
@@ -11289,7 +11289,7 @@ Error starting ApplicationContext. To display the conditions report re-run your 
 2019-12-01 21:53:28.925 ERROR 12320 --- [main] o.s.boot.SpringApplication               : Application run failed
 
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'springSecurityFilterChain' defined in class path resource [org/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'productController' method 
-public java.util.List<com.nikitkasss.store.dto.product.AllProductInfoDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
+public java.util.List<com.nikitkasss.store.dto.ProductDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
 to {GET /all/products}: There is already 'pageController' bean method
 public java.lang.String com.nikitkasss.store.controller.PageController.allProductsPage() mapped.
 	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:627) ~[spring-beans-5.1.9.RELEASE.jar:5.1.9.RELEASE]
@@ -11315,14 +11315,14 @@ public java.lang.String com.nikitkasss.store.controller.PageController.allProduc
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1204) ~[spring-boot-2.1.8.RELEASE.jar:2.1.8.RELEASE]
 	at com.nikitkasss.store.Application.main(Application.java:11) ~[classes/:na]
 Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'productController' method 
-public java.util.List<com.nikitkasss.store.dto.product.AllProductInfoDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
+public java.util.List<com.nikitkasss.store.dto.ProductDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
 to {GET /all/products}: There is already 'pageController' bean method
 public java.lang.String com.nikitkasss.store.controller.PageController.allProductsPage() mapped.
 	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185) ~[spring-beans-5.1.9.RELEASE.jar:5.1.9.RELEASE]
 	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622) ~[spring-beans-5.1.9.RELEASE.jar:5.1.9.RELEASE]
 	... 21 common frames omitted
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'productController' method 
-public java.util.List<com.nikitkasss.store.dto.product.AllProductInfoDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
+public java.util.List<com.nikitkasss.store.dto.ProductDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
 to {GET /all/products}: There is already 'pageController' bean method
 public java.lang.String com.nikitkasss.store.controller.PageController.allProductsPage() mapped.
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778) ~[spring-beans-5.1.9.RELEASE.jar:5.1.9.RELEASE]
@@ -11358,7 +11358,7 @@ public java.lang.String com.nikitkasss.store.controller.PageController.allProduc
 	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154) ~[spring-beans-5.1.9.RELEASE.jar:5.1.9.RELEASE]
 	... 22 common frames omitted
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'productController' method 
-public java.util.List<com.nikitkasss.store.dto.product.AllProductInfoDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
+public java.util.List<com.nikitkasss.store.dto.ProductDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
 to {GET /all/products}: There is already 'pageController' bean method
 public java.lang.String com.nikitkasss.store.controller.PageController.allProductsPage() mapped.
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778) ~[spring-beans-5.1.9.RELEASE.jar:5.1.9.RELEASE]
@@ -11377,7 +11377,7 @@ public java.lang.String com.nikitkasss.store.controller.PageController.allProduc
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1774) ~[spring-beans-5.1.9.RELEASE.jar:5.1.9.RELEASE]
 	... 52 common frames omitted
 Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'productController' method 
-public java.util.List<com.nikitkasss.store.dto.product.AllProductInfoDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
+public java.util.List<com.nikitkasss.store.dto.ProductDto> com.nikitkasss.store.controller.ProductController.getAllProducts()
 to {GET /all/products}: There is already 'pageController' bean method
 public java.lang.String com.nikitkasss.store.controller.PageController.allProductsPage() mapped.
 	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.assertUniqueMethodMapping(AbstractHandlerMethodMapping.java:618) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]

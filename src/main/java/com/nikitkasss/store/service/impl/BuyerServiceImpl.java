@@ -1,6 +1,6 @@
 package com.nikitkasss.store.service.impl;
 
-import com.nikitkasss.store.dto.user.BuyerInfoDto;
+import com.nikitkasss.store.dto.BuyerDto;
 import com.nikitkasss.store.exception.ConvertingException;
 import com.nikitkasss.store.exception.NoSuchEntityException;
 import com.nikitkasss.store.model.Buyer;
@@ -28,43 +28,43 @@ public class BuyerServiceImpl implements BuyerService {
     }
 
     @Override
-    public List<BuyerInfoDto> allBuyers() {
+    public List<BuyerDto> allBuyers() {
         return StreamSupport.stream(buyerRepository
         .findAll().spliterator(), false)
                 .map(buyer -> userConverter.convertToBuyerInfoDto(buyer))
-                .sorted(Comparator.comparing(BuyerInfoDto::getId))
+                .sorted(Comparator.comparing(BuyerDto::getId))
                 .collect(Collectors.toList());
     }
 
     @Transactional
     @Override
-    public void add(BuyerInfoDto dto) throws ConvertingException {
+    public void add(BuyerDto dto) throws ConvertingException {
         Buyer buyer = userConverter.convertToBuyer(dto);
         buyerRepository.save(buyer);
     }
 
     @Transactional
     @Override
-    public void delete(BuyerInfoDto dto) throws ConvertingException {
+    public void delete(BuyerDto dto) throws ConvertingException {
         Buyer buyer = userConverter.convertToBuyer(dto);
         buyerRepository.delete(buyer);
     }
 
     @Transactional
     @Override
-    public void edit(BuyerInfoDto dto) throws ConvertingException {
+    public void edit(BuyerDto dto) throws ConvertingException {
         Buyer buyer = userConverter.convertToBuyer(dto);
         buyerRepository.save(buyer);
     }
 
     @Override
-    public BuyerInfoDto getById(Long id) throws NoSuchEntityException {
+    public BuyerDto getById(Long id) throws NoSuchEntityException {
         Buyer buyer = buyerRepository.findById(id).orElseThrow(() -> new NoSuchEntityException(String.format("Can't find entity by id = %id", id)));
         return userConverter.convertToBuyerInfoDto(buyer);
     }
 
     @Override
-    public List<BuyerInfoDto> getBuyersByParam(String param) {
+    public List<BuyerDto> getBuyersByParam(String param) {
         return StreamSupport.stream(buyerRepository
                 .findAll().spliterator(), false)
                 .map(buyer -> userConverter.convertToBuyerInfoDto(buyer))

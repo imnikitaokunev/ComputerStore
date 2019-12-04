@@ -1,4 +1,4 @@
-package com.nikitkasss.store.dto.position;
+package com.nikitkasss.store.dto;
 
 public class PositionNameDto {
 

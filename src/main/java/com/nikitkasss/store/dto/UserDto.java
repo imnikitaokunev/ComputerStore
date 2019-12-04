@@ -1,6 +1,6 @@
-package com.nikitkasss.store.dto.user;
+package com.nikitkasss.store.dto;
 
-public class AllUserInfoDto {
+public class UserDto {
 
     private Long id;
     private String roleName;

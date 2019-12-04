@@ -1,7 +1,7 @@
 package com.nikitkasss.store.service.impl;
 
-import com.nikitkasss.store.dto.user.GeneralUserInfoDto;
-import com.nikitkasss.store.dto.user.SellerInfoDto;
+import com.nikitkasss.store.dto.GeneralUserDto;
+import com.nikitkasss.store.dto.SellerDto;
 import com.nikitkasss.store.exception.ConvertingException;
 import com.nikitkasss.store.exception.NoSuchEntityException;
 import com.nikitkasss.store.model.Seller;
@@ -29,47 +29,43 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public List<SellerInfoDto> allSellers() {
+    public List<SellerDto> allSellers() {
         return StreamSupport.stream(sellerRepository
                 .findAll().spliterator(), false)
                 .map(seller -> userConverter.convertToSellerInfoDto(seller))
-                .sorted(Comparator.comparing(SellerInfoDto::getId))
+                .sorted(Comparator.comparing(SellerDto::getId))
                 .collect(Collectors.toList());
     }
 
     @Transactional
     @Override
-    public void add(SellerInfoDto dto) throws ConvertingException {
-//        if(dto.getRoleName() != RoleEnum.SELLER.getValue() && dto.getRoleName() != RoleEnum.ADMIN.getValue()){
-//            throw new IllegalArgumentException(dto.getRoleName() + " not supported.");
-//        }
-
+    public void add(SellerDto dto) throws ConvertingException {
         Seller seller = userConverter.convertToSeller(dto);
         sellerRepository.save(seller);
     }
 
     @Transactional
     @Override
-    public void delete(SellerInfoDto dto) throws ConvertingException {
+    public void delete(SellerDto dto) throws ConvertingException {
         Seller seller = userConverter.convertToSeller(dto);
         sellerRepository.delete(seller);
     }
 
     @Transactional
     @Override
-    public void edit(SellerInfoDto dto) throws ConvertingException {
+    public void edit(SellerDto dto) throws ConvertingException {
         Seller seller = userConverter.convertToSeller(dto);
         sellerRepository.save(seller);
     }
 
     @Override
-    public SellerInfoDto getById(Long id) throws NoSuchEntityException {
+    public SellerDto getById(Long id) throws NoSuchEntityException {
         Seller seller = sellerRepository.findById(id).orElseThrow(() -> new NoSuchEntityException(String.format("Can't find entity by id = %id", id)));
         return userConverter.convertToSellerInfoDto(seller);
     }
 
     @Override
-    public List<SellerInfoDto> getSellersByParam(String param) {
+    public List<SellerDto> getSellersByParam(String param) {
         return StreamSupport.stream(sellerRepository
                 .findAll().spliterator(), false)
                 .map(seller -> userConverter.convertToSellerInfoDto(seller))
@@ -83,23 +79,23 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public List<GeneralUserInfoDto> getGeneralSellersInfo(){
+    public List<GeneralUserDto> getGeneralSellersInfo(){
         return StreamSupport.stream(sellerRepository
                 .findAll().spliterator(), false)
                 .map(seller -> userConverter.convertToGeneralUserInfoDto(seller))
-                .sorted(Comparator.comparing(GeneralUserInfoDto::getId))
+                .sorted(Comparator.comparing(GeneralUserDto::getId))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<GeneralUserInfoDto> getSellersGeneralInfoByParam(String param){
+    public List<GeneralUserDto> getSellersGeneralInfoByParam(String param){
         return StreamSupport.stream(sellerRepository
                 .findAll().spliterator(), false)
                 .map(seller -> userConverter.convertToGeneralUserInfoDto(seller))
                 .filter(seller -> seller.getFirstName().contains(param)
                         || seller.getLastName().contains(param)
                         || seller.getUserName().contains(param))
-                .sorted(Comparator.comparing(GeneralUserInfoDto::getId))
+                .sorted(Comparator.comparing(GeneralUserDto::getId))
                 .collect(Collectors.toList());
     }
 

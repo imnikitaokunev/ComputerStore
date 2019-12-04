@@ -1,8 +1,8 @@
 package com.nikitkasss.store.service.impl;
 
 
-import com.nikitkasss.store.dto.position.PositionInfoDto;
-import com.nikitkasss.store.dto.position.PositionNameDto;
+import com.nikitkasss.store.dto.PositionDto;
+import com.nikitkasss.store.dto.PositionNameDto;
 import com.nikitkasss.store.exception.ConvertingException;
 import com.nikitkasss.store.exception.NoSuchEntityException;
 import com.nikitkasss.store.model.Position;
@@ -32,11 +32,11 @@ public class PositionServiceImpl implements PositionService {
     }
 
     @Override
-    public List<PositionInfoDto> allPositions() {
+    public List<PositionDto> allPositions() {
         return StreamSupport.stream(positionRepository
         .findAll().spliterator(), false)
                 .map(position -> positionConverter.convertToPositionInfoDto(position))
-                .sorted(Comparator.comparing(PositionInfoDto::getId))
+                .sorted(Comparator.comparing(PositionDto::getId))
                 .collect(Collectors.toList());
     }
 
@@ -51,33 +51,33 @@ public class PositionServiceImpl implements PositionService {
 
     @Transactional
     @Override
-    public void add(PositionInfoDto dto) throws ConvertingException {
+    public void add(PositionDto dto) throws ConvertingException {
         Position position = positionConverter.convertToPosition(dto);
         positionRepository.save(position);
     }
 
     @Transactional
     @Override
-    public void delete(PositionInfoDto dto) throws ConvertingException {
+    public void delete(PositionDto dto) throws ConvertingException {
         Position position = positionConverter.convertToPosition(dto);
         positionRepository.delete(position);
     }
 
     @Transactional
     @Override
-    public void edit(PositionInfoDto dto) throws ConvertingException {
+    public void edit(PositionDto dto) throws ConvertingException {
         Position position = positionConverter.convertToPosition(dto);
         positionRepository.save(position);
     }
 
     @Override
-    public PositionInfoDto getById(Long id) throws NoSuchEntityException {
+    public PositionDto getById(Long id) throws NoSuchEntityException {
         Position position = positionRepository.findById(id).orElseThrow(() -> new NoSuchEntityException(String.format("Can't find entity by id = %id", id)));
         return positionConverter.convertToPositionInfoDto(position);
     }
 
     @Override
-    public List<PositionInfoDto> getPositionsByName(String name) {
+    public List<PositionDto> getPositionsByName(String name) {
             return StreamSupport.stream(positionRepository
                     .findAll().spliterator(), false)
                     .map(product -> positionConverter.convertToPositionInfoDto(product))

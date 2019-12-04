@@ -1,7 +1,7 @@
 package com.nikitkasss.store.service.impl;
 
-import com.nikitkasss.store.dto.product.AllProductInfoDto;
-import com.nikitkasss.store.dto.product.ProductNameDto;
+import com.nikitkasss.store.dto.ProductDto;
+import com.nikitkasss.store.dto.ProductNameDto;
 import com.nikitkasss.store.exception.ConvertingException;
 import com.nikitkasss.store.exception.NoSuchEntityException;
 import com.nikitkasss.store.model.Product;
@@ -41,16 +41,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<AllProductInfoDto> allProducts() {
+    public List<ProductDto> allProducts() {
         return StreamSupport.stream(productRepository
                 .findAll().spliterator(), false)
                 .map(product -> productConverter.convertToAllProductInfoDto(product))
-                .sorted(Comparator.comparing(AllProductInfoDto::getId))
+                .sorted(Comparator.comparing(ProductDto::getId))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<AllProductInfoDto> getProductsByName(String name) {
+    public List<ProductDto> getProductsByName(String name) {
         return StreamSupport.stream(productRepository
                 .findAll().spliterator(), false)
                 .map(product -> productConverter.convertToAllProductInfoDto(product))
@@ -60,27 +60,27 @@ public class ProductServiceImpl implements ProductService {
 
     @Transactional
     @Override
-    public void add(AllProductInfoDto dto) throws ConvertingException {
+    public void add(ProductDto dto) throws ConvertingException {
         Product product = productConverter.convertToProduct(dto);
         productRepository.save(product);
     }
 
     @Transactional
     @Override
-    public void delete(AllProductInfoDto dto) throws ConvertingException {
+    public void delete(ProductDto dto) throws ConvertingException {
         Product product = productConverter.convertToProduct(dto);
         productRepository.delete(product);
     }
 
     @Transactional
     @Override
-    public void edit(AllProductInfoDto dto) throws ConvertingException {
+    public void edit(ProductDto dto) throws ConvertingException {
         Product product = productConverter.convertToProduct(dto);
         productRepository.save(product);
     }
 
     @Override
-    public AllProductInfoDto getById(Long id) throws NoSuchEntityException {
+    public ProductDto getById(Long id) throws NoSuchEntityException {
         Product product =  productRepository.findById(id).orElseThrow(() -> new NoSuchEntityException(String.format("Can't find entity by id = %id", id)));
         return productConverter.convertToAllProductInfoDto(product);
     }

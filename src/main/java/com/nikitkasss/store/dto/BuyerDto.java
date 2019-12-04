@@ -1,6 +1,6 @@
-package com.nikitkasss.store.dto.user;
+package com.nikitkasss.store.dto;
 
-public class BuyerInfoDto extends AllUserInfoDto {
+public class BuyerDto extends UserDto {
 
     private String phone;
     private String email;

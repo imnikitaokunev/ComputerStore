@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Удаление акта</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+<header>
+    <div class="container">
+        <div class="navbar">
+            <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/supkt2.png}" class="logo" /></a>
+            <ul><li><a class="a-link-margin" title="Выйти" type="submit" th:href="@{/logout}">Выйти</a></li></ul>
+        </div>
+    </div>
+</header>
+<div class="text-center">
+    <h1 class="c-text-h1 margin-five">Список актов</h1>
+    <div class="table-container">
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id продукта</th>
+                <th>Id работника</th>
+                <th>Id покупателя</th>
+                <th>Количество</th>
+                <th>Дата</th>
+                <th style="text-align: center;">Удалить</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="act: ${acts}">
+                <td><a class="a-link-no-margin" th:href="'/seller/editAct?id=' + ${act.id}" th:text="${act.id}"></a></td>
+                <td th:utext="${act.productId}"></td>
+                <td th:utext="${act.sellerId}"></td>
+                <td th:utext="${act.buyerId}"></td>
+                <td th:utext="${act.count}"></td>
+                <td th:utext="${act.date}"></td>
+                <td class="td-x-container"><a class="a-link-no-margin red-x" th:href="'/seller/deleteAct?id=' + ${act.id}">x</a></td>
+            </tr>
+            </tbody>
+        </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

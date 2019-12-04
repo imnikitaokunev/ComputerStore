@@ -1,6 +1,6 @@
-package com.nikitkasss.store.dto.position;
+package com.nikitkasss.store.dto;
 
-public class PositionInfoDto {
+public class PositionDto {
 
     private Long id;
     private String positionName;

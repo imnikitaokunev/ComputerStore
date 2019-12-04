@@ -1,7 +1,7 @@
 package com.nikitkasss.store.service;
 
-import com.nikitkasss.store.dto.product.AllProductInfoDto;
-import com.nikitkasss.store.dto.product.ProductNameDto;
+import com.nikitkasss.store.dto.ProductDto;
+import com.nikitkasss.store.dto.ProductNameDto;
 import com.nikitkasss.store.exception.ConvertingException;
 import com.nikitkasss.store.exception.NoSuchEntityException;
 
@@ -9,19 +9,17 @@ import java.util.List;
 
 public interface ProductService {
 
-    List<AllProductInfoDto> allProducts();
+    List<ProductDto> allProducts();
 
     List<ProductNameDto> allProductNames();
 
-    void add(AllProductInfoDto dto) throws ConvertingException;
+    void add(ProductDto dto) throws ConvertingException;
 
-    void delete(AllProductInfoDto dto) throws ConvertingException;
+    void delete(ProductDto dto) throws ConvertingException;
 
-    //void softDelete(AllProductInfoDto dto) throws ConvertingException;
+    void edit(ProductDto dto) throws ConvertingException;
 
-    void edit(AllProductInfoDto dto) throws ConvertingException;
+    ProductDto getById(Long id) throws NoSuchEntityException;
 
-    AllProductInfoDto getById(Long id) throws NoSuchEntityException;
-
-    List<AllProductInfoDto> getProductsByName(String productName);
+    List<ProductDto> getProductsByName(String productName);
 }

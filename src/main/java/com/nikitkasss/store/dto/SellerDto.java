@@ -1,6 +1,6 @@
-package com.nikitkasss.store.dto.user;
+package com.nikitkasss.store.dto;
 
-public class SellerInfoDto extends AllUserInfoDto {
+public class SellerDto extends UserDto {
 
     private Long positionId;
 

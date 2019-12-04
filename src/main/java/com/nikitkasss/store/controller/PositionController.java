@@ -1,7 +1,7 @@
 package com.nikitkasss.store.controller;
 
-import com.nikitkasss.store.dto.position.PositionInfoDto;
-import com.nikitkasss.store.dto.position.PositionNameDto;
+import com.nikitkasss.store.dto.PositionDto;
+import com.nikitkasss.store.dto.PositionNameDto;
 import com.nikitkasss.store.exception.NoSuchEntityException;
 import com.nikitkasss.store.service.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class PositionController {
 
     @RequestMapping(value="/positions", method = RequestMethod.GET)
     public String getAllPositions(Model model){
-        List<PositionInfoDto> positions = positionService.allPositions();
+        List<PositionDto> positions = positionService.allPositions();
         model.addAttribute("positions", positions);
         return "/position/positions";
     }
@@ -34,15 +34,9 @@ public class PositionController {
 
     @RequestMapping(value = "/findPosition", method = RequestMethod.GET)
     public String showPositionsByName(@RequestParam(value = "search", required = false, defaultValue = "") String name, Model model) {
-        List<PositionInfoDto> positions =  positionService.getPositionsByName(name);
+        List<PositionDto> positions =  positionService.getPositionsByName(name);
         model.addAttribute("result", positions);
         model.addAttribute("search", name);
         return "position/findPosition";
     }
-
-    @GetMapping("/findPosition/{id}")
-    public PositionInfoDto findPosition(@PathVariable("id") Long id) throws NoSuchEntityException {
-        return positionService.getById(id);
-    }
-
 }

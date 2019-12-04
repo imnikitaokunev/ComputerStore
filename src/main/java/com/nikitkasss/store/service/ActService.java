@@ -1,6 +1,6 @@
 package com.nikitkasss.store.service;
 
-import com.nikitkasss.store.dto.act.AllActInfoDto;
+import com.nikitkasss.store.dto.ActDto;
 import com.nikitkasss.store.exception.ConvertingException;
 import com.nikitkasss.store.exception.NoSuchEntityException;
 
@@ -9,13 +9,15 @@ import java.util.List;
 
 public interface ActService {
 
-    List<AllActInfoDto> allActs();
+    List<ActDto> allActs();
 
-    void add(AllActInfoDto dto) throws ConvertingException, ParseException;
+    void add(ActDto dto) throws ConvertingException, ParseException;
 
-    void delete(AllActInfoDto dto) throws ConvertingException, ParseException;
+    void delete(ActDto dto) throws ConvertingException, ParseException;
 
-    void edit(AllActInfoDto dto) throws ConvertingException, ParseException;
+    void edit(ActDto dto) throws ConvertingException, ParseException;
 
-    AllActInfoDto getById(Long id) throws NoSuchEntityException;
+    ActDto getById(Long id) throws NoSuchEntityException;
+
+    List<ActDto> getActsByParam(String param);
 }

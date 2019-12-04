@@ -1,6 +1,6 @@
 package com.nikitkasss.store.service.converter;
 
-import com.nikitkasss.store.dto.act.AllActInfoDto;
+import com.nikitkasss.store.dto.ActDto;
 import com.nikitkasss.store.exception.ConvertingException;
 import com.nikitkasss.store.model.Act;
 import com.nikitkasss.store.model.Buyer;
@@ -15,8 +15,8 @@ import java.util.Date;
 @Service
 public class ActConverter {
 
-    public AllActInfoDto convertToAllActInfoDto(Act act){
-        AllActInfoDto dto = new AllActInfoDto();
+    public ActDto convertToAllActInfoDto(Act act){
+        ActDto dto = new ActDto();
         dto.setId(act.getId());
         dto.setBuyerId(act.getBuyer().getId());
         dto.setSellerId(act.getSeller().getId());
@@ -26,7 +26,7 @@ public class ActConverter {
         return dto;
     }
 
-    public Act convertToAct(AllActInfoDto dto) throws ConvertingException, ParseException {
+    public Act convertToAct(ActDto dto) throws ConvertingException, ParseException {
         throwExceptionIfDtoIsNotValid(dto);
 
         Act act = new Act();
@@ -41,14 +41,14 @@ public class ActConverter {
         act.setSeller(seller);
         act.setProduct(product);
         act.setCount(dto.getCount());
-        String pattern = "MM-dd-yyyy";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        Date date = simpleDateFormat.parse(dto.getDate().toString());
+        System.out.println(dto.getDate());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = simpleDateFormat.parse(dto.getDate());
         act.setDate(date);
         return act;
     }
 
-    private void throwExceptionIfDtoIsNotValid(AllActInfoDto dto) {
+    private void throwExceptionIfDtoIsNotValid(ActDto dto) {
         if(dto == null){
             throw new ConvertingException("Act must be not empty.");
         }

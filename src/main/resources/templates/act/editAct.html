@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Редактирование акта</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar">
+            <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/supkt2.png}" class="logo" /></a>
+            <ul><li><a title="Назад" th:href="@{/}">Назад</a></li></ul>
+        </div>
+    </div>
+</header>
+
+<div class="text-center">
+    <h1 class="c-text-h1 margin-five">Редактирование акта</h1>
+
+    <form class="box" action="#" th:action="@{/seller/editAct}" th:object="${act}" method="post">
+        <div class="c-label box c-box-input">
+            <label> Id продукта: <input type="text" th:value="${act.productId}" th:field="*{productId}" /> </label>
+            <label> Id работника: <input type="text" th:value="${act.sellerId}" th:field="*{sellerId}" /> </label>
+            <label> Id покупателя: <input type="text" th:value="${act.buyerId}" th:field="*{buyerId}" /> </label>
+            <label> Количество: <input type="text" th:value="${act.count}" th:field="*{count}" /> </label>
+            <label> Дата: <input type="date" th:value="${act.date}" th:field="*{date}" /> </label>
+            <input type="hidden" th:value="${act.id}" th:field="*{id}" />
+            <input type = "submit" class="login-button" value=" Изменить "/>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

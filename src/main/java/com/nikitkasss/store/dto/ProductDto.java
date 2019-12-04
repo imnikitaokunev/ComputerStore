@@ -1,6 +1,6 @@
-package com.nikitkasss.store.dto.product;
+package com.nikitkasss.store.dto;
 
-public class AllProductInfoDto {
+public class ProductDto {
 
     private Long id;
     private String productName;

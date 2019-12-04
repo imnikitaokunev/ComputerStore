@@ -1,6 +1,9 @@
 package com.nikitkasss.store.service.converter;
 
-import com.nikitkasss.store.dto.user.*;
+import com.nikitkasss.store.dto.BuyerDto;
+import com.nikitkasss.store.dto.GeneralUserDto;
+import com.nikitkasss.store.dto.SellerDto;
+import com.nikitkasss.store.dto.UserDto;
 import com.nikitkasss.store.exception.ConvertingException;
 import com.nikitkasss.store.model.*;
 import org.springframework.stereotype.Service;
@@ -8,8 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserConverter {
 
-    public GeneralUserInfoDto convertToGeneralUserInfoDto(AbstractUser user){
-        GeneralUserInfoDto dto = new GeneralUserInfoDto();
+    public GeneralUserDto convertToGeneralUserInfoDto(AbstractUser user){
+        GeneralUserDto dto = new GeneralUserDto();
         dto.setId(user.getId());
         dto.setRoleName(user.getUserRole().getValue());
         dto.setFirstName(user.getFirstName());
@@ -18,8 +21,8 @@ public class UserConverter {
         return dto;
     }
 
-    public AllUserInfoDto convertToAllUserInfoDto(AbstractUser user){
-        AllUserInfoDto dto = new AllUserInfoDto();
+    public UserDto convertToAllUserInfoDto(AbstractUser user){
+        UserDto dto = new UserDto();
         dto.setId(user.getId());
         dto.setRoleName(user.getUserRole().getValue());
         dto.setFirstName(user.getFirstName());
@@ -30,21 +33,14 @@ public class UserConverter {
         return dto;
     }
 
-    public AbstractUser convertToUser(AllUserInfoDto dto){
+    public AbstractUser convertToUser(UserDto dto){
         AbstractUser user = new AbstractUser();
         user = getBaseUser(user, dto);
         return user;
     }
 
-    public UserLoginPasswordDto convertToLoginAndPasswordDto(AbstractUser user){
-        UserLoginPasswordDto dto = new UserLoginPasswordDto();
-        dto.setId(user.getId());
-        dto.setUserName(user.getUserName());
-        dto.setUserPassword(user.getUserPassword());
-        return dto;
-    }
 
-    public Buyer convertToBuyer(BuyerInfoDto dto) throws ConvertingException{
+    public Buyer convertToBuyer(BuyerDto dto) throws ConvertingException{
         throwExceptionIfDtoIsNotValid(dto);
 
         Buyer buyer = new Buyer();
@@ -54,8 +50,8 @@ public class UserConverter {
         return buyer;
     }
 
-    public BuyerInfoDto convertToBuyerInfoDto(Buyer buyer){
-        BuyerInfoDto dto = new BuyerInfoDto();
+    public BuyerDto convertToBuyerInfoDto(Buyer buyer){
+        BuyerDto dto = new BuyerDto();
         dto.setId(buyer.getId());
         dto.setEmail(buyer.getEmail());
         dto.setRoleName(buyer.getUserRole().getValue());
@@ -68,7 +64,7 @@ public class UserConverter {
         return dto;
     }
 
-    public Seller convertToSeller(SellerInfoDto dto) throws ConvertingException{
+    public Seller convertToSeller(SellerDto dto) throws ConvertingException{
         throwExceptionIfDtoIsNotValid(dto);
 
         Seller seller = new Seller();
@@ -79,8 +75,8 @@ public class UserConverter {
         return seller;
     }
 
-    public SellerInfoDto convertToSellerInfoDto(Seller seller){
-        SellerInfoDto dto = new SellerInfoDto();
+    public SellerDto convertToSellerInfoDto(Seller seller){
+        SellerDto dto = new SellerDto();
         dto.setId(seller.getId());
         dto.setRoleName(seller.getUserRole().getValue());
         dto.setFirstName(seller.getFirstName());
@@ -92,7 +88,7 @@ public class UserConverter {
         return dto;
     }
 
-    private AbstractUser getBaseUser(AbstractUser user, AllUserInfoDto dto){
+    private AbstractUser getBaseUser(AbstractUser user, UserDto dto){
         user.setId(dto.getId());
         user.setUserRole(RoleEnum.valueOf(dto.getRoleName()));
         user.setFirstName(dto.getFirstName());
@@ -103,7 +99,7 @@ public class UserConverter {
         return user;
     }
 
-    private void throwExceptionIfDtoIsNotValid(AllUserInfoDto dto) throws ConvertingException {
+    private void throwExceptionIfDtoIsNotValid(UserDto dto) throws ConvertingException {
         if (dto == null)
             throw new ConvertingException("Must be not null.");
         if (dto.getRoleName() == null)
@@ -111,8 +107,8 @@ public class UserConverter {
         if (dto.getFirstName() == null || dto.getLastName() == null || dto.getPatronymicName() == null)
             throw new ConvertingException("Name must be not null.");
 
-        if (dto instanceof SellerInfoDto) {
-            if (((SellerInfoDto) dto).getPositionId() == null)
+        if (dto instanceof SellerDto) {
+            if (((SellerDto) dto).getPositionId() == null)
                 throw new ConvertingException(("Position must be not null"));
         }
     }

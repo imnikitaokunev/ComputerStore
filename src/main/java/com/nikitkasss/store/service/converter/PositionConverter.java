@@ -1,10 +1,9 @@
 package com.nikitkasss.store.service.converter;
 
-import com.nikitkasss.store.dto.position.PositionInfoDto;
-import com.nikitkasss.store.dto.position.PositionNameDto;
+import com.nikitkasss.store.dto.PositionDto;
+import com.nikitkasss.store.dto.PositionNameDto;
 import com.nikitkasss.store.exception.ConvertingException;
 import com.nikitkasss.store.model.Position;
-import org.springframework.core.convert.ConversionException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,15 +16,15 @@ public class PositionConverter {
         return dto;
     }
 
-    public PositionInfoDto convertToPositionInfoDto(Position position){
-        PositionInfoDto dto = new PositionInfoDto();
+    public PositionDto convertToPositionInfoDto(Position position){
+        PositionDto dto = new PositionDto();
         dto.setId(position.getId());
         dto.setPositionName(position.getName());
         dto.setPositionSalary(position.getSalary());
         return dto;
     }
 
-    public Position convertToPosition(PositionInfoDto dto){
+    public Position convertToPosition(PositionDto dto){
         throwExceptionIfDtoIsNotValid(dto);
 
         Position position = new Position();
@@ -35,7 +34,7 @@ public class PositionConverter {
         return position;
     }
 
-    private void throwExceptionIfDtoIsNotValid(PositionInfoDto dto) throws ConvertingException {
+    private void throwExceptionIfDtoIsNotValid(PositionDto dto) throws ConvertingException {
         if(dto == null){
             throw new ConvertingException("Position must be not null.");
         }

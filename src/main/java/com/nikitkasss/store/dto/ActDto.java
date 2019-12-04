@@ -1,8 +1,6 @@
-package com.nikitkasss.store.dto.act;
+package com.nikitkasss.store.dto;
 
-import java.util.Date;
-
-public class AllActInfoDto {
+public class ActDto {
 
     private Long id;
     private Long productId;

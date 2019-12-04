@@ -1,9 +1,6 @@
 package com.nikitkasss.store.controller;
 
-import com.nikitkasss.store.dto.user.BuyerInfoDto;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller

@@ -1,6 +1,6 @@
 package com.nikitkasss.store.service.impl;
 
-import com.nikitkasss.store.dto.act.AllActInfoDto;
+import com.nikitkasss.store.dto.ActDto;
 import com.nikitkasss.store.exception.ConvertingException;
 import com.nikitkasss.store.exception.NoSuchEntityException;
 import com.nikitkasss.store.model.Act;
@@ -30,7 +30,7 @@ public class ActServiceImpl implements ActService {
     }
 
     @Override
-    public List<AllActInfoDto> allActs() {
+    public List<ActDto> allActs() {
         return StreamSupport.stream(actRepository
         .findAll().spliterator(), false)
                 .map(act -> actConverter.convertToAllActInfoDto(act))
@@ -39,28 +39,42 @@ public class ActServiceImpl implements ActService {
 
     @Transactional
     @Override
-    public void add(AllActInfoDto dto) throws ConvertingException, ParseException {
+    public void add(ActDto dto) throws ConvertingException, ParseException {
         Act act = actConverter.convertToAct(dto);
         actRepository.save(act);
     }
 
     @Transactional
     @Override
-    public void delete(AllActInfoDto dto) throws ConvertingException, ParseException {
+    public void delete(ActDto dto) throws ConvertingException, ParseException {
         Act act = actConverter.convertToAct(dto);
         actRepository.delete(act);
     }
 
     @Transactional
     @Override
-    public void edit(AllActInfoDto dto) throws ConvertingException, ParseException {
+    public void edit(ActDto dto) throws ConvertingException, ParseException {
         Act act = actConverter.convertToAct(dto);
         actRepository.save(act);
     }
 
     @Override
-    public AllActInfoDto getById(Long id) throws NoSuchEntityException {
+    public ActDto getById(Long id) throws NoSuchEntityException {
         Act act = actRepository.findById(id).orElseThrow(() -> new NoSuchEntityException(String.format("Can't find entity by id = %id", id)));
         return actConverter.convertToAllActInfoDto(act);
+    }
+
+    @Override
+    public List<ActDto> getActsByParam(String param) {
+        return StreamSupport.stream(actRepository
+                .findAll().spliterator(), false)
+                .map(act -> actConverter.convertToAllActInfoDto(act))
+                .filter(act -> act.getId().toString().contains(param)
+                        || act.getProductId().toString().contains(param)
+                        || act.getBuyerId().toString().contains(param)
+                        || act.getSellerId().toString().contains(param)
+                        || act.getCount().toString().contains(param)
+                        || act.getDate().contains(param))
+                .collect(Collectors.toList());
     }
 }

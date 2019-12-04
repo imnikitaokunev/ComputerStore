@@ -1,4 +1,4 @@
-package com.nikitkasss.store.dto.product;
+package com.nikitkasss.store.dto;
 
 public class ProductNameDto {
 
