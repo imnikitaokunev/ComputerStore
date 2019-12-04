@@ -11,9 +11,7 @@
 <header>
     <div class="container">
         <div class="navbar">
-            <a th:href="@{/}">
-                <img th:src="@{/img/supkt2.png}" class="logo" />
-            </a>
+            <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/supkt2.png}" class="logo" /></a>
             <ul>
                 <li>
                     <a title="Назад" th:href="@{/}">
@@ -27,16 +25,6 @@
 
 <div class="text-center">
     <h1 class="c-text-h1 margin-five margin-bottom-five">Редактирование покупателя</h1>
-
-<!--    <form class="box" action="#" th:action="@{/seller/editBuyer}" th:object="${buyer}" method="post">-->
-<!--        <div class="c-label box c-box-input">-->
-<!--            <label> Название: <input id="name" type="text" th:value="${product.productName}" th:field="*{productName}" /> </label>-->
-<!--            <label> Стоимость: <input id="cost" type="text" th:value="${product.productCost}" th:field="*{productCost}" /> </label>-->
-<!--            <input type="hidden" th:value="${product.id}" th:field="*{id}" />-->
-<!--            <input type = "submit" class="login-button" value=" Изменить " onclick="showMessage()"/>-->
-<!--        </div>-->
-<!--    </form>-->
-
 
     <form class="box" action="#" th:action="@{/seller/editBuyer}" th:object="${buyer}" method="post">
         <div class="c-label box c-box-input">

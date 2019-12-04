@@ -21,7 +21,7 @@ public class ProductController {
 
     @GetMapping("/buyerPage")
     public String buyerPage(){
-        return "main/buyerPage";
+        return "home";
     };
 
 

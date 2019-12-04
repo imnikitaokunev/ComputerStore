@@ -1,63 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Продукты</title>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-        <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
-        <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
-        <meta charset="UTF-8" />
-    </head>
+<head>
+    <title>Продукты</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
+    <meta charset="UTF-8"/>
+</head>
 
-    <body>
-        <header>
-            <div class="container">
-                <div class="navbar">
-                    <a class="a-link-margin"  th:href="@{/all/buyerPage}">
-                        <img th:src="@{/img/supkt2.png}" class="logo" />
+<body>
+<header>
+    <div class="container">
+        <div class="navbar">
+            <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/supkt2.png}" class="logo" /></a>
+            <ul>
+                <li>
+                    <a class="a-link-margin" title="Выйти" type="submit" th:href="@{/logout}">
+                        Выйти
                     </a>
-                    <ul>
-                        <li>
-                            <a class="a-link-margin" title="Выйти" type="submit" th:href="@{/logout}">
-                                Выйти
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </header>
-
-        <div sec:authorize="hasRole('ROLE_ADMIN')">
-            This will only be displayed if authenticated user has role ROLE_ADMIN.
+                </li>
+            </ul>
         </div>
+    </div>
+</header>
 
-        <div sec:authentication="name">
-            The value of the "name" property of the authentication object should appear here.
-        </div>
-
-        <div th:text="${#authorization}"></div>
-        
-        <div class="text-center">
-            <h1 class="c-text-h1 margin-five">Каталог продуктов</h1>
-            <div class="table-container">
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Название</th>
-                            <th>Стоимость</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="product: ${products}">
-                            <td><a class="a-link-no-margin" th:href="'/seller/editProduct?id=' + ${product.id}"  th:text="${product.id}"></a></td>
-                            <td th:utext="${product.productName}"></td>
-                            <td th:utext="${product.productCost}"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                </form>
-            </div>
-        </div>
-    </body>
+<div class="text-center">
+    <h1 class="c-text-h1 margin-five">Каталог продуктов</h1>
+    <div class="table-container-small">
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Название</th>
+                <th>Стоимость</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product: ${products}">
+                <td><a class="a-link-no-margin" th:href="'/seller/editProduct?id=' + ${product.id}" th:text="${product.id}"></a></td>
+                <td th:utext="${product.productName}"></td>
+                <td th:utext="${product.productCost}"></td>
+            </tr>
+            </tbody>
+        </table>
+        </form>
+    </div>
+</div>
+</body>
 </html>

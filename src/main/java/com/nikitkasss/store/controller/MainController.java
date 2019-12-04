@@ -10,13 +10,18 @@ import org.springframework.web.bind.annotation.*;
 public class MainController {
 
     @GetMapping("/")
-    public String homePage() {
-        return "main/home";
+    public String mainPage() {
+        return "main/main";
     }
 
     @GetMapping("/login")
     public String loginPage(){
         return "main/login";
+    }
+
+    @GetMapping("/all/home")
+    public String homePage(){
+        return "/main/home";
     }
 
 }

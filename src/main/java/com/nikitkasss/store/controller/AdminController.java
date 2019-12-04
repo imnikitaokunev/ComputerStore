@@ -1,9 +1,7 @@
 package com.nikitkasss.store.controller;
 
 import com.nikitkasss.store.dto.position.PositionInfoDto;
-import com.nikitkasss.store.dto.position.PositionNameDto;
 import com.nikitkasss.store.dto.user.SellerInfoDto;
-import com.nikitkasss.store.model.Seller;
 import com.nikitkasss.store.service.PositionService;
 import com.nikitkasss.store.service.SellerService;
 import com.nikitkasss.store.service.UserService;
