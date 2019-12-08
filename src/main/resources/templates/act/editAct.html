@@ -1,37 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8" />
-    <title>Редактирование акта</title>
+    <title th:utext="#{editact.title}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
+    <meta charset="UTF-8" />
 </head>
 <body>
 <header>
     <div class="container">
         <div class="navbar">
             <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/supkt2.png}" class="logo" /></a>
-            <ul><li><a title="Назад" th:href="@{/}">Назад</a></li></ul>
+            <div class="local">
+                <a href="#en" th:href="@{?locale=en}">En</a> |
+                <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+            </div>
+            <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
         </div>
     </div>
 </header>
 
 <div class="text-center">
-    <h1 class="c-text-h1 margin-five">Редактирование акта</h1>
+    <h1 class="c-text-h1 margin-five" th:utext="#{editact.title}"></h1>
 
     <form class="box" action="#" th:action="@{/seller/editAct}" th:object="${act}" method="post">
         <div class="c-label box c-box-input">
-            <label> Id продукта: <input type="text" th:value="${act.productId}" th:field="*{productId}" /> </label>
-            <label> Id работника: <input type="text" th:value="${act.sellerId}" th:field="*{sellerId}" /> </label>
-            <label> Id покупателя: <input type="text" th:value="${act.buyerId}" th:field="*{buyerId}" /> </label>
-            <label> Количество: <input type="text" th:value="${act.count}" th:field="*{count}" /> </label>
-            <label> Дата: <input type="date" th:value="${act.date}" th:field="*{date}" /> </label>
+
+            <label for="productId" th:utext="#{productId.title}"></label>
+            <input type="text" th:value="${act.productId}" th:field="*{productId}" id="productId" name="productId" />
+            <label for="sellerId" th:utext="#{sellerId.title}"></label>
+            <input type="text" th:value="${act.sellerId}" th:field="*{sellerId}" id="sellerId" name="sellerId" />
+            <label for="buyerId" th:utext="#{buyerId.title}"></label>
+            <input type="text" th:value="${act.buyerId}" th:field="*{buyerId}" id="buyerId" name="buyerId" />
+            <label for="count" th:utext="#{count.title}"></label>
+            <input type="text" th:value="${act.count}" th:field="*{count}" id="count" name="count" />
+            <label> Date: <input type="datetime-local" th:field="*{date}" /> </label>
             <input type="hidden" th:value="${act.id}" th:field="*{id}" />
-            <input type = "submit" class="login-button" value=" Изменить "/>
+            <input type = "submit" class="login-button" th:value="' ' + #{edit.title} + ' '"/>
+
         </div>
     </form>
 
 </div>
+
 </body>
 </html>

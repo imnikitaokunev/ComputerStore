@@ -8,6 +8,7 @@ import com.nikitkasss.store.model.Product;
 import com.nikitkasss.store.model.Seller;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,7 +23,9 @@ public class ActConverter {
         dto.setSellerId(act.getSeller().getId());
         dto.setProductId(act.getProduct().getId());
         dto.setCount(act.getCount());
-        dto.setDate(act.getDate().toString());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        String date = dateFormat.format(act.getDate());
+        dto.setDate(date);
         return dto;
     }
 
@@ -41,8 +44,7 @@ public class ActConverter {
         act.setSeller(seller);
         act.setProduct(product);
         act.setCount(dto.getCount());
-        System.out.println(dto.getDate());
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         Date date = simpleDateFormat.parse(dto.getDate());
         act.setDate(date);
         return act;

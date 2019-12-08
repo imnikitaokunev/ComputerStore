@@ -13,12 +13,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
 @Transactional(readOnly = true)
 public class SellerServiceImpl implements SellerService {
+    private static final Logger logger = Logger.getLogger(String.valueOf(SellerServiceImpl.class));
+
 
     private SellerRepository sellerRepository;
     private UserConverter userConverter;
@@ -30,6 +33,7 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public List<SellerDto> allSellers() {
+        logger.info("Show sellers");
         return StreamSupport.stream(sellerRepository
                 .findAll().spliterator(), false)
                 .map(seller -> userConverter.convertToSellerInfoDto(seller))
@@ -40,6 +44,7 @@ public class SellerServiceImpl implements SellerService {
     @Transactional
     @Override
     public void add(SellerDto dto) throws ConvertingException {
+        logger.info("Add seller id = " + dto.getId());
         Seller seller = userConverter.convertToSeller(dto);
         sellerRepository.save(seller);
     }
@@ -47,6 +52,7 @@ public class SellerServiceImpl implements SellerService {
     @Transactional
     @Override
     public void delete(SellerDto dto) throws ConvertingException {
+        logger.info("Delete seller id = " + dto.getId());
         Seller seller = userConverter.convertToSeller(dto);
         sellerRepository.delete(seller);
     }
@@ -54,18 +60,21 @@ public class SellerServiceImpl implements SellerService {
     @Transactional
     @Override
     public void edit(SellerDto dto) throws ConvertingException {
+        logger.info("Edit seller id = " + dto.getId());
         Seller seller = userConverter.convertToSeller(dto);
         sellerRepository.save(seller);
     }
 
     @Override
     public SellerDto getById(Long id) throws NoSuchEntityException {
+        logger.info("Get seller by id: " + id);
         Seller seller = sellerRepository.findById(id).orElseThrow(() -> new NoSuchEntityException(String.format("Can't find entity by id = %id", id)));
         return userConverter.convertToSellerInfoDto(seller);
     }
 
     @Override
     public List<SellerDto> getSellersByParam(String param) {
+        logger.info("Get sellers by param: " + param);
         return StreamSupport.stream(sellerRepository
                 .findAll().spliterator(), false)
                 .map(seller -> userConverter.convertToSellerInfoDto(seller))
@@ -80,6 +89,7 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public List<GeneralUserDto> getGeneralSellersInfo(){
+        logger.info("Get general sellers info");
         return StreamSupport.stream(sellerRepository
                 .findAll().spliterator(), false)
                 .map(seller -> userConverter.convertToGeneralUserInfoDto(seller))
@@ -89,6 +99,7 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public List<GeneralUserDto> getSellersGeneralInfoByParam(String param){
+        logger.info("Get sellers general info by param: " + param);
         return StreamSupport.stream(sellerRepository
                 .findAll().spliterator(), false)
                 .map(seller -> userConverter.convertToGeneralUserInfoDto(seller))

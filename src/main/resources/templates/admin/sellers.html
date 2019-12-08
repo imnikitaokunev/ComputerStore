@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Работники</title>
+    <title th:utext="#{sellers.title}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
@@ -13,30 +13,29 @@
     <div class="container">
         <div class="navbar">
             <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/supkt2.png}" class="logo" /></a>
-            <ul>
-                <li>
-                    <a class="a-link-margin" title="Выйти" type="submit" th:href="@{/logout}">
-                        Выйти
-                    </a>
-                </li>
-            </ul>
+            <div class="local">
+                <a href="#en" th:href="@{?locale=en}">En</a> |
+                <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+            </div>
+            <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
+
         </div>
     </div>
 </header>
 <div class="text-center">
-    <h1 class="c-text-h1 margin-five">Список работников</h1>
+    <h1 class="c-text-h1 margin-five" th:utext="#{sellers.title}"></h1>
     <div class="table-container">
 
         <table>
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Имя</th>
-                <th>Фамилия</th>
-                <th>Отчество</th>
-                <th>Логин</th>
-                <th>Пароль</th>
-                <th>Id должн.</th>
+                <th th:utext="#{id.title}"></th>
+                <th th:utext="#{firstName.title}"></th>
+                <th th:utext="#{lastName.title}"></th>
+                <th th:utext="#{patronymicName.title}"></th>
+                <th th:utext="#{login.name}"></th>
+                <th th:utext="#{password.name}"></th>
+                <th th:utext="#{positionId.title}"></th>
             </tr>
             </thead>
             <tbody>

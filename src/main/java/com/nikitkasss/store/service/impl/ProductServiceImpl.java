@@ -14,12 +14,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
 @Transactional(readOnly = true)
 public class ProductServiceImpl implements ProductService {
+    private static final Logger logger = Logger.getLogger(String.valueOf(ProductServiceImpl.class));
+
 
     private ProductRepository productRepository;
     private ProductConverter productConverter;
@@ -32,6 +35,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductNameDto> allProductNames(){
+        logger.info("Show product names");
         return StreamSupport.stream(productRepository
                 .findAll().spliterator(), false)
                 .map(product -> productConverter.convertToProductNameDto(product))
@@ -42,6 +46,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDto> allProducts() {
+        logger.info("Show products");
         return StreamSupport.stream(productRepository
                 .findAll().spliterator(), false)
                 .map(product -> productConverter.convertToAllProductInfoDto(product))
@@ -51,6 +56,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDto> getProductsByName(String name) {
+        logger.info("Get products by name: " + name);
         return StreamSupport.stream(productRepository
                 .findAll().spliterator(), false)
                 .map(product -> productConverter.convertToAllProductInfoDto(product))
@@ -61,6 +67,7 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     @Override
     public void add(ProductDto dto) throws ConvertingException {
+        logger.info("Add product id = :" + dto.getId());
         Product product = productConverter.convertToProduct(dto);
         productRepository.save(product);
     }
@@ -68,6 +75,7 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     @Override
     public void delete(ProductDto dto) throws ConvertingException {
+        logger.info("Delete product id = :" + dto.getId());
         Product product = productConverter.convertToProduct(dto);
         productRepository.delete(product);
     }
@@ -75,12 +83,14 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     @Override
     public void edit(ProductDto dto) throws ConvertingException {
+        logger.info("Edit product id = :" + dto.getId());
         Product product = productConverter.convertToProduct(dto);
         productRepository.save(product);
     }
 
     @Override
     public ProductDto getById(Long id) throws NoSuchEntityException {
+        logger.info("Get product by id: " + id);
         Product product =  productRepository.findById(id).orElseThrow(() -> new NoSuchEntityException(String.format("Can't find entity by id = %id", id)));
         return productConverter.convertToAllProductInfoDto(product);
     }

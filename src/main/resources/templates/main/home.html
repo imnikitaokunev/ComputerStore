@@ -1,114 +1,68 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
-        <title>Система учета продаж</title>
+        <title th:text="#{main.title}"></title>
         <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-        <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}"/>
+        <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}"  />
         <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
-        <meta charset="UTF-8" />
+        <meta charset="UTF-8">
     </head>
     <body>
         <header>
             <div class="container">
                 <div class="navbar">
                     <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/supkt2.png}" class="logo" /></a>
-                    <ul>
-                        <li>
-                            <a class="a-link-margin" title="Выйти" th:href="@{/logout}">
-                                Выйти
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="local">
+                        <a href="#en" th:href="@{?locale=en}">En</a> |
+                        <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+                    </div>
+                    <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
                 </div>
             </div>
         </header>
         <div class="text-center">
-            <h1 class="c-text-h1 margin-five">
-                Добро пожаловать в систему!
-            </h1>
-            <ul  style="padding: 2% 30%;">
-                <div>
+            <h1 class="c-text-h1 margin-five" th:text="#{welcomeshort.title}"></h1>
+                <div style="padding: 2% 30%">
+                    <div th:if="${#request.isUserInRole('BLOCKED')}" style="text-align: center;">
+                        <div class="box c-box-incorrect">
+                            <div class="c-label incorrect" th:text="#{blocked.title}"></div>
+                        </div>
+                    </div>
                     <div th:if="${#request.isUserInRole('BUYER') || #request.isUserInRole('SELLER') || #request.isUserInRole('ADMIN')}">
-                        <li><a class="a-link-margin" title="Каталог продуктов" th:href="@{/all/products}">
-                            Каталог продуктов</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Краткий список продуктов" th:href="@{/all/productNames}">
-                            Краткий список продуктов</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Поиск продуктов" th:href="@{/all/findProduct}">
-                            Поиск продуктов</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Вакансии" th:href="@{/all/positions}">
-                            Вакансии</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Краткий список вакансий" th:href="@{/all/positionNames}">
-                            Краткий список вакансий</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Поиск вакансий" th:href="@{/all/findPosition}">
-                            Поиск вакансий</a>
-                        </li>
+                        <li><a class="a-link-margin" th:text="#{productscatalog.title}" th:href="@{/all/products}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{shortproductscatalog.title}" th:href="@{/all/productNames}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{findproducts.title}" th:href="@{/all/findProduct}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{positions.title}" th:href="@{/all/positions}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{shortpositions.title}" th:href="@{/all/positionNames}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{findpositions.title}" th:href="@{/all/findPosition}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{location.title}" th:href="@{/all/map}"></a></li>
                     </div>
                     <div th:if="${#request.isUserInRole('SELLER') || #request.isUserInRole('ADMIN')}">
-                        <li><a class="a-link-margin" title="Добавить продукт" th:href="@{/seller/addProduct}">
-                            Добавить продукт</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Удалить продукт" th:href="@{/seller/deleteProduct}">
-                            Удалить продукт</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Добавить покупателя" th:href="@{/seller/addBuyer}">
-                            Добавить покупателя</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Список покупателей" th:href="@{/seller/buyers}">
-                            Список покупателей</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Поиск покупателей" th:href="@{/seller/findBuyer}">
-                            Поиск покупателей</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Удалить покупателя" th:href="@{/seller/deleteBuyer}">
-                            Удалить покупателя</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Поиск работников" th:href="@{/seller/findSeller}">
-                            Поиск работников</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Список работников" th:href="@{/seller/sellers}">
-                            Список работников</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Добавить акт" th:href="@{/seller/addAct}">
-                            Добавить акт</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Удалить акт" th:href="@{/seller/deleteAct}">
-                            Удалить акт</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Список актов" th:href="@{/seller/acts}">
-                            Список актов</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Поиск актов" th:href="@{/seller/findAct}">
-                            Поиск актов</a>
-                        </li>
+                        <li><a class="a-link-margin" th:text="#{addproduct.title}" th:href="@{/seller/addProduct}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{deleteproduct.title}" th:href="@{/seller/deleteProduct}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{addbuyer.title}" th:href="@{/seller/addBuyer}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{buyers.title}" th:href="@{/seller/buyers}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{findbuyers.title}" th:href="@{/seller/findBuyer}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{deletebuyer.title}" th:href="@{/seller/deleteBuyer}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{findseller.title}" th:href="@{/seller/findSeller}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{sellers.title}" th:href="@{/seller/sellers}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{addact.title}" th:href="@{/seller/addAct}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{deleteact.title}" th:href="@{/seller/deleteAct}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{acts.title}" th:href="@{/seller/acts}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{findacts.title}" th:href="@{/seller/findAct}"></a></li>
                     </div>
                     <div th:if="${#request.isUserInRole('ADMIN')}">
-                        <li><a class="a-link-margin" title="Добавить вакансию" th:href="@{/admin/addPosition}">
-                            Добавить вакансию</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Удалить вакансию" th:href="@{/admin/deletePosition}">
-                            Удалить вакансию</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Добавить работника" th:href="@{/admin/addSeller}">
-                            Добавить работника</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Удалить работника" th:href="@{/admin/deleteSeller}">
-                            Удалить работника</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Поиск работников" th:href="@{/admin/findSeller}">
-                             Поиск работников</a>
-                        </li>
-                        <li><a class="a-link-margin" title="Список работников" th:href="@{/admin/sellers}">
-                            Список работников</a>
-                        </li>
-
+                        <li><a class="a-link-margin" th:text="#{addposition.title}" th:href="@{/admin/addPosition}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{deleteposition.title}" th:href="@{/admin/deletePosition}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{addseller.title}" th:href="@{/admin/addSeller}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{deleteseller.title}" th:href="@{/admin/deleteSeller}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{findseller.title}" th:href="@{/admin/findSeller}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{sellers.title}" th:href="@{/admin/sellers}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{blockbuyer.title}" th:href="@{/admin/blockBuyer}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{blockseller.title}" th:href="@{/admin/blockSeller}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{positionschart.title}" th:href="@{/admin/positionschart}"></a></li>
                     </div>
                 </div>
-            </ul>
         </div>
     </body>
 </html>

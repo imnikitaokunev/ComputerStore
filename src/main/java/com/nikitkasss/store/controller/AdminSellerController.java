@@ -34,7 +34,6 @@ public class AdminSellerController {
 
     @RequestMapping(value="/addSeller", method = RequestMethod.POST)
     public String addSeller(@ModelAttribute SellerDto dto, BindingResult errors, Model model) throws Exception {
-        dto.setRoleName("ROLE_SELLER");
         if(service.getByUserName(dto.getUserName()) == null){
             sellerService.add(dto);
         }

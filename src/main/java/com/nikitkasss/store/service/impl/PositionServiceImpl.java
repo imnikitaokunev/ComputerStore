@@ -15,12 +15,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
 @Transactional(readOnly = true)
 public class PositionServiceImpl implements PositionService {
+    private static final Logger logger = Logger.getLogger(String.valueOf(PositionServiceImpl.class));
+
 
     private PositionRepository positionRepository;
     private PositionConverter positionConverter;
@@ -33,6 +36,7 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public List<PositionDto> allPositions() {
+        logger.info("Show positions");
         return StreamSupport.stream(positionRepository
         .findAll().spliterator(), false)
                 .map(position -> positionConverter.convertToPositionInfoDto(position))
@@ -42,6 +46,7 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public List<PositionNameDto> allPositionNames() {
+        logger.info("Show position names");
         return StreamSupport.stream(positionRepository
                 .findAll().spliterator(), false)
                 .map(position -> positionConverter.convertToPositionNameDto(position))
@@ -52,6 +57,7 @@ public class PositionServiceImpl implements PositionService {
     @Transactional
     @Override
     public void add(PositionDto dto) throws ConvertingException {
+        logger.info("Add position id = " + dto.getId());
         Position position = positionConverter.convertToPosition(dto);
         positionRepository.save(position);
     }
@@ -59,6 +65,7 @@ public class PositionServiceImpl implements PositionService {
     @Transactional
     @Override
     public void delete(PositionDto dto) throws ConvertingException {
+        logger.info("Delete position id = " + dto.getId());
         Position position = positionConverter.convertToPosition(dto);
         positionRepository.delete(position);
     }
@@ -66,23 +73,36 @@ public class PositionServiceImpl implements PositionService {
     @Transactional
     @Override
     public void edit(PositionDto dto) throws ConvertingException {
+        logger.info("Edit position id = " + dto.getId());
         Position position = positionConverter.convertToPosition(dto);
         positionRepository.save(position);
     }
 
     @Override
     public PositionDto getById(Long id) throws NoSuchEntityException {
+        logger.info("Get position by id = " + id);
         Position position = positionRepository.findById(id).orElseThrow(() -> new NoSuchEntityException(String.format("Can't find entity by id = %id", id)));
         return positionConverter.convertToPositionInfoDto(position);
     }
 
     @Override
     public List<PositionDto> getPositionsByName(String name) {
-            return StreamSupport.stream(positionRepository
+        logger.info("Get position by name: " + name);
+        return StreamSupport.stream(positionRepository
                     .findAll().spliterator(), false)
                     .map(product -> positionConverter.convertToPositionInfoDto(product))
                     .filter(product -> product.getPositionName().contains(name))
                     .collect(Collectors.toList());
         }
+
+    @Override
+    public Long getCountBySalary(Long min, Long max){
+        logger.info("Get count of position by salary: " + min + " - " + max);
+        return StreamSupport.stream(positionRepository
+                .findAll().spliterator(), false)
+                .map(product -> positionConverter.convertToPositionInfoDto(product))
+                .filter(product -> product.getPositionSalary() >= min && product.getPositionSalary() <= max)
+                .count();
+    }
 
 }

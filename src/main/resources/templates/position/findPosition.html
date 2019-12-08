@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Поиск вакансии</title>
+    <title th:utext="#{findpositions.title}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
@@ -13,31 +13,30 @@
     <div class="container">
         <div class="navbar">
             <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/supkt2.png}" class="logo" /></a>
-            <ul>
-                <li>
-                    <a class="a-link-margin" title="Выйти" type="submit" th:href="@{/logout}">
-                        Выйти
-                    </a>
-                </li>
-            </ul>
+            <div class="local">
+                <a href="#en" th:href="@{?locale=en}">En</a> |
+                <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+            </div>
+            <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
+
         </div>
     </div>
 </header>
 
 <div class="text-center">
-    <h1 class="c-text-h1 margin-five">Поиск вакансии</h1>
+    <h1 class="c-text-h1 margin-five" th:utext="#{findpositions.title}"></h1>
     <form th:action="@{/all/findPosition}" method="get">
-        <input class="search" type="text" name="search" th:value="${search}" placeholder="Поиск..">
-        <div th:if="${#lists.isEmpty(result)}" class="c-label incorrect">Ничего не найдено.</div>
+        <input class="search" type="text" name="search" th:value="${search}" th:placeholder='#{placeholder.title}'>
+        <div th:if="${#lists.isEmpty(result)}" class="c-label incorrect" th:utext="#{nothingfound.title}"></div>
         <div th:if="${not #lists.isEmpty(result)}">
-            <h1 class="c-text-h1">Результаты поиска</h1>
+            <h1 class="c-text-h1" th:utext="#{result.title}"></h1>
             <div class="table-container-small-40">
                 <table>
                     <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Название</th>
-                        <th>Зар.плата</th>
+                        <th th:utext="#{id.title}"></th>
+                        <th th:utext="#{name.title}"></th>
+                        <th th:utext="#{salary.title}"></th>
                     </tr>
                     </thead>
                     <tbody>

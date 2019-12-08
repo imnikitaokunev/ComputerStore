@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Вакансии</title>
+    <title th:utext="#{positions.title}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
     <meta charset="UTF-8" />
+    <script th:inline="javascript">
+        function convert(value) {
+            var now=document.getElementById("currency").value;
+            switch (now) {
+                case 'USD': return value*0.47 + '$';
+                case 'EUR': return value*0.43 + '€';
+                case 'RUR': return value*30.09 + '₽';
+                case 'GRV': return value*11.21 + '₴';
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -13,25 +24,31 @@
     <div class="container">
         <div class="navbar">
             <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/supkt2.png}" class="logo" /></a>
-            <ul>
-                <li>
-                    <a class="a-link-margin" title="Выйти" type="submit" th:href="@{/logout}">
-                        Выйти
-                    </a>
-                </li>
-            </ul>
+            <div class="local">
+                <a href="#en" th:href="@{?locale=en}">En</a> |
+                <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+            </div>
+            <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
         </div>
     </div>
 </header>
 <div class="text-center">
-    <h1 class="c-text-h1 margin-five">Список вакансий</h1>
+    <h1 class="c-text-h1 margin-five" th:utext="#{positions.title}"></h1>
     <div class="table-container-small-40">
         <table>
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Название</th>
-                <th style="text-align: center;">Зар.плата</th>
+                <th th:utext="#{id.title}"></th>
+                <th th:utext="#{name.title}"></th>
+                <th style="text-align: center;" th:utext="#{salary.title}"></th>
+                <th style="text-align: center;">
+                    <select id="currency">
+                        <option>USD</option>
+                        <option>EUR</option>
+                        <option>RUR</option>
+                        <option>GRV</option>
+                    </select>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -39,6 +56,7 @@
                 <td><a class="a-link-no-margin" th:href="'/admin/editPosition?id=' + ${position.id}" th:text="${position.id}"></a></td>
                 <td th:utext="${position.positionName}"></td>
                 <td style="text-align: center;" th:utext="${position.positionSalary}"></td>
+                <td style="text-align: center;"><button th:onclick="/*<![CDATA[*/ var value = /*[[${position.positionSalary}]]*/ ${position.positionSalary}; alert(convert(value));" th:utext="#{convert.title}"></button> </td>
             </tr>
             </tbody>
         </table>

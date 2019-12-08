@@ -13,12 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
 @Transactional(readOnly = true)
 public class ActServiceImpl implements ActService {
+    private static final Logger logger = Logger.getLogger(String.valueOf(ActServiceImpl.class));
 
     private ActRepository actRepository;
     private ActConverter actConverter;
@@ -31,6 +33,7 @@ public class ActServiceImpl implements ActService {
 
     @Override
     public List<ActDto> allActs() {
+        logger.info("Show acts");
         return StreamSupport.stream(actRepository
         .findAll().spliterator(), false)
                 .map(act -> actConverter.convertToAllActInfoDto(act))
@@ -40,6 +43,7 @@ public class ActServiceImpl implements ActService {
     @Transactional
     @Override
     public void add(ActDto dto) throws ConvertingException, ParseException {
+        logger.info("Add act id = " + dto.getId());
         Act act = actConverter.convertToAct(dto);
         actRepository.save(act);
     }
@@ -47,6 +51,7 @@ public class ActServiceImpl implements ActService {
     @Transactional
     @Override
     public void delete(ActDto dto) throws ConvertingException, ParseException {
+        logger.info("Delete act id = " + dto.getId());
         Act act = actConverter.convertToAct(dto);
         actRepository.delete(act);
     }
@@ -54,18 +59,21 @@ public class ActServiceImpl implements ActService {
     @Transactional
     @Override
     public void edit(ActDto dto) throws ConvertingException, ParseException {
+        logger.info("Edit act id = " + dto.getId());
         Act act = actConverter.convertToAct(dto);
         actRepository.save(act);
     }
 
     @Override
     public ActDto getById(Long id) throws NoSuchEntityException {
+        logger.info("Get act by id = " + id);
         Act act = actRepository.findById(id).orElseThrow(() -> new NoSuchEntityException(String.format("Can't find entity by id = %id", id)));
         return actConverter.convertToAllActInfoDto(act);
     }
 
     @Override
     public List<ActDto> getActsByParam(String param) {
+        logger.info("Act by param " + param);
         return StreamSupport.stream(actRepository
                 .findAll().spliterator(), false)
                 .map(act -> actConverter.convertToAllActInfoDto(act))

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title th:utext="#{buyers.title}"></title>
+    <title th:utext="#{blockseller.title}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
@@ -18,11 +18,12 @@
                 <a href="#ru" th:href="@{?locale=ru}">Ru</a>
             </div>
             <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
+
         </div>
     </div>
 </header>
 <div class="text-center">
-    <h1 class="c-text-h1 margin-five" th:utext="#{buyers.title}"></h1>
+    <h1 class="c-text-h1 margin-five" th:utext="#{sellers.title}"></h1>
     <div class="table-container">
 
         <table>
@@ -34,24 +35,25 @@
                 <th th:utext="#{patronymicName.title}"></th>
                 <th th:utext="#{login.name}"></th>
                 <th th:utext="#{password.name}"></th>
-                <th th:utext="#{phone.title}"></th>
-                <th th:utext="#{email.title}"></th>
+                <th th:utext="#{positionId.title}"></th>
+                <th th:utext="#{rolename.title}"></th>
+                <th th:utext="#{block.name}"></th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="buyer: ${buyers}">
-                <td><a class="a-link-no-margin" th:href="'/seller/editBuyer?id=' + ${buyer.id}"  th:text="${buyer.id}"></a></td>
-                <td th:utext="${buyer.firstName}"></td>
-                <td th:utext="${buyer.lastName}"></td>
-                <td th:utext="${buyer.patronymicName}"></td>
-                <td th:utext="${buyer.userName}"></td>
-                <td th:utext="${buyer.userPassword}"></td>
-                <td th:utext="${buyer.phone}"></td>
-                <td th:utext="${buyer.email}"></td>
+            <tr th:each="seller: ${sellers}">
+                <td><a class="a-link-no-margin" th:href="'/admin/blockSeller?id=' + ${seller.id}"  th:text="${seller.id}"></a></td>
+                <td th:utext="${seller.firstName}"></td>
+                <td th:utext="${seller.lastName}"></td>
+                <td th:utext="${seller.patronymicName}"></td>
+                <td th:utext="${seller.userName}"></td>
+                <td th:utext="${seller.userPassword}"></td>
+                <td th:utext="${seller.positionId}"></td>
+                <td th:utext="${seller.roleName}"></td>
+                <td style="text-align: center;"><a class="a-link-no-margin green-y" th:href="'/admin/blockSeller?id=' + ${seller.id}">✓</a></td>
             </tr>
             </tbody>
         </table>
-        </form>
     </div>
 </div>
 </body>

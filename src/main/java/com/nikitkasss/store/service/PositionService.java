@@ -22,4 +22,6 @@ public interface PositionService{
     PositionDto getById(Long id) throws NoSuchEntityException;
 
     List<PositionDto> getPositionsByName(String name);
+
+    Long getCountBySalary(Long min, Long max);
 }

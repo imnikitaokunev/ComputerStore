@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title th:text="#{main.title}"></title>
+    <title th:text="#{location.title}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}"  />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
@@ -20,15 +20,17 @@
                 <li><a class="a-link-margin" th:text="#{login.title}" th:href="@{/all/home}"></a></li>
                 <li><a class="a-link-margin" th:text="#{signup.title}" th:href="@{/registration}"></a></li>
             </ul>
-
         </div>
     </div>
 </header>
 <div class="text-center">
-    <h1 class="c-text-h1 margin-five" th:text="#{h.title}"></h1>
-    <p class="c-text-body" th:text="#{welcome.title}"></p>
-    <img th:src="@{/img/logo.jpg}" />
-</div>
+    <h1 class="c-text-h1 margin-five" th:utext="'Our ' + #{location.title} + ' :)'"></h1>
 
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2350.1395269245713!2d27.593643815859874!3d53.91149648010133!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcfaef3e9a681%3A0x7c878f9c75770041!2z0JHQk9Cj0JjQoCwg0LrQvtGA0L_Rg9GBIOKEliA1!5e0!3m2!1sru!2sby!4v1575579576295!5m2!1sru!2sby" width="800" height="400" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+    </div>
+
+    <p class="c-text-body" th:utext="#{bsuir.title}"></p>
+</div>
 </body>
 </html>

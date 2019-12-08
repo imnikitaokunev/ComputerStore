@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
-    <title>Добавление продукта</title>
+    <title th:utext="#{addproduct.title}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
@@ -13,26 +13,26 @@
     <div class="container">
         <div class="navbar">
             <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/supkt2.png}" class="logo" /></a>
-            <ul>
-                <li>
-                    <a class="a-link-margin" title="Выйти" type="submit" th:href="@{/logout}">
-                        Выйти
-                    </a>
-                </li>
-            </ul>
+            <div class="local">
+                <a href="#en" th:href="@{?locale=en}">En</a> |
+                <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+            </div>
+            <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
         </div>
     </div>
 </header>
 
 <div class="text-center">
-    <h1 class="c-text-h1">Добавление продукта</h1>
+    <h1 class="c-text-h1" th:utext="#{addproduct.title}"></h1>
 </div>
 
 <form class="box" action="#" th:action="@{/seller/addProduct}" th:object="${product}" method="post">
     <div class="c-label box c-box-input">
-        <label> Название: <input type="text" th:field="*{productName}" /> </label>
-        <label> Стоимость: <input type="text" th:field="*{productCost}" /> </label>
-        <input type = "submit" class="login-button" value=" Добавить " onclick="showMessage()"/>
+        <label for="productName" th:utext="#{name.title} + ':'"></label>
+        <input type="text" th:field="*{productName}" id="productName" name="productName" />
+        <label for="cost" th:utext="#{cost.title} + ':'"></label>
+        <input type="text" th:field="*{productCost}" id="cost" name="cost" />
+        <input type = "submit" class="login-button" th:value="' ' + #{add.title}+ ' '" onclick="showMessage()"/>
     </div>
 </form>
 </body>

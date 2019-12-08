@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Поиск работников</title>
+    <title th:utext="#{findseller.title}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
@@ -13,39 +13,37 @@
     <div class="container">
         <div class="navbar">
             <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/supkt2.png}" class="logo" /></a>
-            <ul>
-                <li>
-                    <a class="a-link-margin" title="Выйти" type="submit" th:href="@{/logout}">
-                        Выйти
-                    </a>
-                </li>
-            </ul>
+            <div class="local">
+                <a href="#en" th:href="@{?locale=en}">En</a> |
+                <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+            </div>
+            <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
         </div>
     </div>
 </header>
 
 <div class="text-center">
-    <h1 class="c-text-h1 margin-five">Поиск работников</h1>
+    <h1 class="c-text-h1 margin-five" th:utext="#{findseller.title}"></h1>
     <form th:action="@{/seller/findSeller}" method="get">
 
-        <input class="search" type="text" name="search" th:value="${search}" placeholder="Поиск..">
+        <input class="search" type="text" name="search" th:value="${search}" th:placeholder='#{placeholder.title}'>
 
-        <div th:if="${#lists.isEmpty(result)}" class="c-label incorrect">Ничего не найдено.</div>
+        <div th:if="${#lists.isEmpty(result)}" class="c-label incorrect" th:utext="#{result.title}"></div>
         <div th:if="${not #lists.isEmpty(result)}">
-            <h1 class="c-text-h1">Результаты поиска</h1>
+            <h1 class="c-text-h1" th:utext="#{result.title}"></h1>
             <div class="table-container">
                 <table>
                     <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Имя</th>
-                        <th>Фамилия</th>
-                        <th>Логин</th>
+                        <th th:utext="#{id.title}"></th>
+                        <th th:utext="#{firstName.title}"></th>
+                        <th th:utext="#{lastName.title}"></th>
+                        <th th:utext="#{login.name}"></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="seller: ${result}">
-                        <td><a class="a-link-no-margin" th:href="'/seller/editSeller?id=' + ${seller.id}"  th:text="${seller.id}"></a></td>
+                        <td><a class="a-link-no-margin" th:href="'/admin/editSeller?id=' + ${seller.id}"  th:text="${seller.id}"></a></td>
                         <td th:utext="${seller.firstName}"></td>
                         <td th:utext="${seller.lastName}"></td>
                         <td th:utext="${seller.userName}"></td>

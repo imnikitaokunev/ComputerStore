@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
-    <title>Редактирование вакансии</title>
+    <title th:utext="#{editposition.title}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
@@ -14,29 +14,29 @@
     <div class="container">
         <div class="navbar">
             <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/supkt2.png}" class="logo" /></a>
-            <ul>
-                <li>
-                    <a title="Назад" th:href="@{/all/home}">
-                        Назад
-                    </a>
-                </li>
-            </ul>
+            <div class="local">
+                <a href="#en" th:href="@{?locale=en}">En</a> |
+                <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+            </div>
+            <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
+
         </div>
     </div>
 </header>
 
 <div class="text-center">
-    <h1 class="c-text-h1 margin-five">Редактирование вакансии</h1>
+    <h1 class="c-text-h1 margin-five" th:utext="#{editposition.title}"></h1>
 
     <form class="box" action="#" th:action="@{/admin/editPosition}" th:object="${position}" method="post">
         <div class="c-label box c-box-input">
-            <label> Название: <input id="name" type="text" th:value="${position.positionName}" th:field="*{positionName}" /> </label>
-            <label> Зар.плата: <input id="salary" type="text" th:value="${position.positionSalary}" th:field="*{positionSalary}" /> </label>
+            <label for="name" th:utext="#{name.title}"></label>
+            <input id="name" type="text" th:value="${position.positionName}" th:field="*{positionName}" />
+            <label for="salary" th:utext="#{salary.title}"></label>
+            <input id="salary" type="text" th:value="${position.positionSalary}" th:field="*{positionSalary}" />
             <input type="hidden" th:value="${position.id}" th:field="*{id}" />
-            <input type = "submit" class="login-button" value=" Изменить " onclick="showMessage()"/>
+            <input type = "submit" class="login-button" th:value="' ' + #{edit.title} + ' '" onclick="showMessage()"/>
         </div>
     </form>
-
 
 </div>
 </body>

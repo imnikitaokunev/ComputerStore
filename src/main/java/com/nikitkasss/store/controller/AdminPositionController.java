@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -56,5 +57,19 @@ public class AdminPositionController {
         model.addAttribute("positions", positions);
         return "admin/deletePosition";
     }
+
+    @RequestMapping(value="positionschart", method = RequestMethod.GET)
+    public String chart(Model model){
+        var list = new ArrayList<Long>();
+        var arr = new Long[]{
+            positionService.getCountBySalary(0l, 500l),
+            positionService.getCountBySalary(501l, 1000l),
+            positionService.getCountBySalary(1001l, 2000l),
+            positionService.getCountBySalary(2001l, 500000000l)
+        };
+        model.addAttribute("arr", arr);
+        return "chart/positionschart";
+    }
+
 
 }

@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Акты</title>
+    <title th:text="#{acts.title}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
     <meta charset="UTF-8"/>
+    <script th:inline="javascript">
+        function download(data, filename, type) {
+            var file = new Blob([data], {type: type});
+            if (window.navigator.msSaveOrOpenBlob) // IE10+
+                window.navigator.msSaveOrOpenBlob(file, filename);
+            else { // Others
+                var a = document.createElement("a"),
+                    url = URL.createObjectURL(file);
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(function() {
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                }, 0);
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -13,23 +32,28 @@
     <div class="container">
         <div class="navbar">
             <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/supkt2.png}" class="logo" /></a>
-            <ul><li><a class="a-link-margin" title="Выйти" type="submit" th:href="@{/logout}">Выйти</a></li></ul>
+            <div class="local">
+                <a href="#en" th:href="@{?locale=en}">En</a> |
+                <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+            </div>
+            <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
         </div>
     </div>
 </header>
 
 <div class="text-center">
-    <h1 class="c-text-h1 margin-five">Список актов</h1>
+    <h1 class="c-text-h1 margin-five" th:utext="#{acts.title}"></h1>
     <div class="table-container-small">
         <table>
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Id продукта</th>
-                <th>Id работника</th>
-                <th>Id покупателя</th>
-                <th>Количество</th>
-                <th>Дата</th>
+                <th th:utext="#{id.title}"></th>
+                <th th:utext="#{productId.title}"></th>
+                <th th:utext="#{sellerId.title}"></th>
+                <th th:utext="#{buyerId.title}"></th>
+                <th th:utext="#{count.title}"></th>
+                <th style="text-align: center" th:utext="#{datee.title}"></th>
+                <th th:utext="#{save.title}"></th>
             </tr>
             </thead>
             <tbody>
@@ -40,11 +64,21 @@
                 <td th:utext="${act.buyerId}"></td>
                 <td th:utext="${act.count}"></td>
                 <td th:utext="${act.date}"></td>
-            </tr>
+                <td style="text-align: center"><button class="download" th:onclick="/*<![CDATA[*/ var id = /*[[${act.id}]]*/ ${act.id};
+                var productId = /*[[${act.productId}]]*/ ${act.productId};
+                var sellerId = /*[[${act.sellerId}]]*/ ${act.sellerId};
+                var buyerId = /*[[${act.buyerId}]]*/ ${act.buyerId};
+                var count = /*[[${act.count}]]*/ ${act.count};
+                var date = /*[[${act.date}]]*/ ${act.date};
+                download('Id: ' + id + '\n' + 'ProductId: ' + productId + '\n' + 'SellerId: ' +
+                 sellerId + '\n' + 'BuyerId: ' + buyerId + '\n' + 'Count: ' + count + '\n' +
+                  'Date: ' + date + '\n', 'Act' + id.toString(), String); /*]]>*/ ">▼</button></td>
+                </tr>
             </tbody>
         </table>
         </form>
     </div>
 </div>
+
 </body>
 </html>

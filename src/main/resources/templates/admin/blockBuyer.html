@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title th:utext="#{buyers.title}"></title>
+    <title th:utext="#{blockbuyer.title}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
@@ -36,6 +36,8 @@
                 <th th:utext="#{password.name}"></th>
                 <th th:utext="#{phone.title}"></th>
                 <th th:utext="#{email.title}"></th>
+                <th th:utext="#{rolename.title}"></th>
+                <th th:utext="#{block.name}"></th>
             </tr>
             </thead>
             <tbody>
@@ -48,10 +50,11 @@
                 <td th:utext="${buyer.userPassword}"></td>
                 <td th:utext="${buyer.phone}"></td>
                 <td th:utext="${buyer.email}"></td>
+                <td th:utext="${buyer.roleName}"></td>
+                <td style="text-align: center;"><a class="a-link-no-margin green-y" th:href="'/admin/blockBuyer?id=' + ${buyer.id}">✓</a></td>
             </tr>
             </tbody>
         </table>
-        </form>
     </div>
 </div>
 </body>

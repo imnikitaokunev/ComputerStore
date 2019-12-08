@@ -6,19 +6,24 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class MainController {
 
-    @GetMapping("/")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String mainPage() {
         return "main/main";
     }
 
-    @GetMapping("/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage(){
         return "main/login";
     }
 
-    @GetMapping("/all/home")
+    @RequestMapping(value = "/all/home", method = RequestMethod.GET)
     public String homePage(){
         return "/main/home";
+    }
+
+    @RequestMapping(value = "/all/map", method = RequestMethod.GET)
+    public String map(){
+        return "/main/map";
     }
 
 }

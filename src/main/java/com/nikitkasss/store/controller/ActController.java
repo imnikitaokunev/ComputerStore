@@ -59,9 +59,7 @@ public class ActController {
     public String deleteAct(@RequestParam (value = "id", required = false) Long id,  Model model) throws Exception {
         if(id != null){
             ActDto dto = actService.getById(id);
-            System.out.println("Before del");
             actService.delete(dto);
-            System.out.println("after del");
         }
         List<ActDto> acts = actService.allActs();
         model.addAttribute("acts", acts);
@@ -72,6 +70,15 @@ public class ActController {
     public String editProduct(@ModelAttribute ActDto dto, BindingResult errors, Model model) throws Exception {
         actService.edit(dto);
         return "redirect:/seller/acts";
+    }
+
+    @RequestMapping(value = "/saveFile", method = RequestMethod.GET)
+    public String saveFile(@RequestParam (value = "id", required = true) Long id, Model model){
+        if(id != null){
+            ActDto dto = actService.getById(id);
+
+        }
+        return "fdsfd";
     }
 
 }

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
-    <title>Добавление вакансии</title>
+    <title th:utext="#{addposition.title}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
@@ -13,26 +13,27 @@
     <div class="container">
         <div class="navbar">
             <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/supkt2.png}" class="logo" /></a>
-            <ul>
-                <li>
-                    <a title="Назад" th:href="@{/all/home}">
-                        Назад
-                    </a>
-                </li>
-            </ul>
+            <div class="local">
+                <a href="#en" th:href="@{?locale=en}">En</a> |
+                <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+            </div>
+            <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
+
         </div>
     </div>
 </header>
 
 <div class="text-center">
-    <h1 class="c-text-h1">Добавление вакансии</h1>
+    <h1 class="c-text-h1" th:utext="#{addposition.title}"></h1>
 </div>
 
 <form class="box" action="#" th:action="@{/admin/addPosition}" th:object="${position}" method="post">
     <div class="c-label box c-box-input">
-        <label> Название: <input type="text" th:field="*{positionName}" /> </label>
-        <label> Зар.плата: <input type="text" th:field="*{positionSalary}" /> </label>
-        <input type = "submit" class="login-button" value=" Добавить " onclick="showMessage()"/>
+        <label for="positionName" th:utext="#{name.title} + ':'"></label>
+        <input type="text" th:field="*{positionName}" id="positionName" name="positionName" />
+        <label for="positionSalary" th:utext="#{salary.title} + ':'"></label>
+        <input type="text" th:field="*{positionSalary}" id="positionSalary" name="positionSalary"/>
+        <input type = "submit" class="login-button" th:value=" #{add.title} " onclick="showMessage()"/>
     </div>
 </form>
 </body>

@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Система учета продаж</title>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-        <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}"  />
-        <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
-    </head>
+<head>
+    <title th:text="#{login.title}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}"  />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+    <meta charset="UTF-8">
+</head>
     <body>
         <header>
             <div class="container">
                 <div class="navbar">
                     <a class="a-link-margin" th:href="@{/}"><img th:src="@{/img/supkt2.png}" class="logo" /></a>
-                    <ul><li><a class="a-link-margin" title="Регистрация" th:href="@{/registration}">Регистрация</a></li></ul>
+                    <div class="local">
+                        <a href="#en" th:href="@{?locale=en}">En</a> |
+                        <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+                    </div>
+                    <ul><li><a class="a-link-margin" th:text="#{signup.title}" th:href="@{/registration}"></a></li></ul>
                 </div>
             </div>
         </header>
         <div class="box c-box-incorrect">
-            <div class="c-label incorrect" th:if="${param.error}">
-                Неправильный логин или пароль.
-            </div>
-            <div class="c-label incorrect" th:if="${param.logout}">
-                Вы вышли из системы.
-            </div>
+            <div class="c-label incorrect" th:if="${param.error}" th:text="#{incorrect.title}"></div>
+            <div class="c-label incorrect" th:if="${param.logout}" th:text="#{paramlogout.title}"></div>
         </div>
         <form class="box" th:action="@{/login}" method="post">
             <div class="c-label box c-box-input">
-                <label> Логин: <input type="text" name="username" /> </label>
-                <label> Пароль: <input type="password" name="password" />
-                </label> <input class="login-button" type="submit" value=" Войти " />
+                <label for="username" th:text="#{login.name} + ':'"></label>
+                <input type="text" id="username" name="username"/>
+                <label for="password" th:text="#{password.name} + ':'"></label>
+                <input type="password" id="password" name="password" />
+                <input class="login-button" type="submit" th:value="' ' + #{login.title} + ' '" />
             </div>
         </form>
     </body>

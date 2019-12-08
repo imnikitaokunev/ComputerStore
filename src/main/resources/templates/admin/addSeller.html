@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
-    <title>Добавление работника</title>
+    <title th:utext="#{addseller.title}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.ico}"  />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
@@ -13,29 +13,36 @@
     <div class="container">
         <div class="navbar">
             <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/supkt2.png}" class="logo" /></a>
-            <ul>
-                <li>
-                    <a class="a-link-margin" title="Войти" th:href="@{/login}">
-                        Войти
-                    </a>
-                </li>
-            </ul>
+            <div class="local">
+                <a href="#en" th:href="@{?locale=en}">En</a> |
+                <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+            </div>
+            <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
         </div>
     </div>
 </header>
 
 <div class="text-center" style="margin-bottom: 3%;">
-    <h1 class="c-text-h1 margin-five">Добавление работника</h1>
+    <h1 class="c-text-h1 margin-five" th:utext="#{addseller.title}"></h1>
 </div>
 <form class="box" action="#" th:action="@{/admin/addSeller}" th:object="${seller}" method="post">
     <div class="c-label box c-box-input">
-        <label> Имя: <input type="text" th:field="*{firstName}" /> </label>
-        <label> Фамилия: <input type="text" th:field="*{lastName}" /> </label>
-        <label> Отчество: <input type="text" th:field="*{patronymicName}" /> </label>
-        <label> Логин: <input type="text" th:field="*{userName}" /> </label>
-        <label> Пароль: <input type="text" th:field="*{userPassword}"  /> </label>
-        <label> Id должности <input type="text" th:field="*{positionId}" /> </label>
-        <input type = "submit" class="login-button" value=" Добавить " />
+
+        <label for="firstName" th:utext="#{firstName.title}"></label>
+        <input type="text" th:field="*{firstName}" id="firstName" name="firstName" />
+        <label th:utext="#{lastName.title}"></label>
+        <input type="text" th:field="*{lastName}" id="lastName" name="lastName" />
+        <label th:utext="#{patronymicName.title}"></label>
+        <input type="text" th:field="*{patronymicName}" id="patronymicName" name="patronymicName"/>
+        <label th:utext="#{userName.title} + ':'"></label>
+        <input type="text" th:field="*{userName}" id="userName" name="userName" />
+        <label th:utext="#{userPassword.title} + ':'"></label>
+        <input type="text" th:field="*{userPassword}" id="userPassword" name="userPassword" />
+        <label for="positionId" th:utext="#{positionId.title}"> </label>
+        <input type="text" th:field="*{positionId}" id="positionId" name="positionId" />
+        <label for="roleName" th:utext="#{rolename.title}"></label>
+        <input type="text" th:field="*{roleName}" id="roleName" name="roleName" />
+        <input type = "submit" class="login-button" th:value="' ' + #{add.title} + ' '" />
     </div>
 </form>
 </body>
