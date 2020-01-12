@@ -60,8 +60,8 @@ public class AdminPositionController {
 
     @RequestMapping(value="positionschart", method = RequestMethod.GET)
     public String chart(Model model){
-        var list = new ArrayList<Long>();
-        var arr = new Long[]{
+        ArrayList<Long> list = new ArrayList<Long>();
+        Long[] arr = new Long[]{
             positionService.getCountBySalary(0l, 500l),
             positionService.getCountBySalary(501l, 1000l),
             positionService.getCountBySalary(1001l, 2000l),
